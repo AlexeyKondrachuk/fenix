@@ -1,0 +1,688 @@
+@use "../../app/styles/variables" as brand;
+
+.header {
+  color: brand.$green;
+}
+.inner,
+.menuList {
+  max-width: 70rem;
+  margin-inline: auto;
+}
+.inner {
+  padding: brand.$space * 2;
+}
+.tagline {
+  margin: 0;
+  padding: brand.$space brand.$space * 2;
+  border-radius: brand.$radius-large;
+  background: brand.$sage;
+  text-align: center;
+  font-size: brand.$font-caption;
+}
+.identity {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: brand.$space * 3;
+  padding-top: brand.$space * 2;
+}
+.logo {
+  display: inline-grid;
+  line-height: brand.$leading-heading;
+  text-decoration: none;
+  font-size: brand.$font-caption;
+}
+.wordmark {
+  font-size: clamp(1.75rem, 4vw, 2.5rem);
+  font-weight: brand.$font-bold;
+}
+.description {
+  margin: 0;
+  border-inline-start: 1px solid brand.$green;
+  padding-inline-start: brand.$space * 3;
+  font-size: brand.$font-caption;
+}
+.menu {
+  background: brand.$green;
+  color: brand.$milk;
+  padding: 5px;
+}
+.menuList {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: brand.$space;
+  list-style: none;
+  margin-block: 0;
+  padding: brand.$space brand.$space * 2;
+  font-size: brand.$font-caption;
+}
+.menuList a,
+.menuList span {
+  display: inline-flex;
+  align-items: center;
+  min-height: brand.$touch-min;
+  padding-inline: brand.$space;
+}
+.menuList a {
+  text-decoration: none;
+}
+.menuList a:hover {
+  text-decoration: underline;
+}
+.menuList span {
+  opacity: 0.72;
+}
+.home {
+  background: brand.$sage;
+  color: brand.$green;
+  border-radius: brand.$radius-small;
+}
+@media (max-width: 36rem) {
+  .identity {
+    gap: brand.$space;
+  }
+  .description {
+    border: 0;
+    padding: 0;
+  }
+  .menuList {
+    justify-content: flex-start;
+  }
+}
+
+.contacts {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: brand.$space * 2;
+  margin-inline-start: auto;
+}
+.phoneList,
+.messengers ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.phoneList li + li {
+  margin-top: brand.$space;
+}
+.phoneList a {
+  font-weight: brand.$font-bold;
+  text-decoration: none;
+}
+.phoneList small {
+  display: block;
+}
+.messengers {
+  position: relative;
+}
+.messengers summary {
+  display: list-item;
+  cursor: pointer;
+  background: brand.$green;
+  color: brand.$milk;
+  border-radius: brand.$radius-large;
+  padding: brand.$space * 1.5 brand.$space * 2;
+}
+.messengers ul {
+  position: absolute;
+  z-index: 2;
+  inset-inline-end: 0;
+  min-width: 9rem;
+  background: brand.$milk;
+  border: 1px solid brand.$green;
+  border-radius: brand.$radius-small;
+}
+.messengers a {
+  display: block;
+  padding: brand.$space brand.$space * 2;
+}
+@media (max-width: 36rem) {
+  .contacts {
+    width: 100%;
+    margin-inline-start: 0;
+  }
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: brand.$space;
+  font-size: brand.$font-caption;
+}
+.actions details {
+  position: relative;
+}
+.actions summary {
+  display: list-item;
+  min-height: brand.$touch-min;
+  cursor: pointer;
+  border-radius: brand.$radius-large;
+  padding: brand.$space * 1.25 brand.$space * 1.5;
+  background: brand.$green;
+  color: brand.$milk;
+}
+.mobileCall,
+.mobileMenu {
+  display: none;
+}
+.searchPanel,
+.mobileCall .phoneList {
+  position: absolute;
+  z-index: 3;
+  inset-inline-end: 0;
+  width: 15rem;
+  padding: brand.$space * 2;
+  border: 1px solid brand.$green;
+  border-radius: brand.$radius-small;
+  background: brand.$milk;
+}
+.searchPanel input {
+  display: block;
+  width: 100%;
+  min-height: brand.$touch-min;
+  margin-top: brand.$space;
+}
+.searchPanel ul {
+  margin-bottom: 0;
+  padding-left: 1.25rem;
+}
+.searchPanel li + li {
+  margin-top: brand.$space;
+}
+
+@media (max-width: 48rem) {
+  .header { position: sticky; top: 0; z-index: 30; padding-top: env(safe-area-inset-top, 0px); box-shadow: 0 4px 16px rgb(38 52 46 / 8%); }
+  .header .tagline { display: none; }
+  .menu,
+  .desktopPhones {
+    display: none;
+  }
+  .contacts {
+    position: relative;
+    width: 100%;
+    margin-inline-start: 0;
+  }
+  .actions details {
+    position: static;
+  }
+  .mobileCall {
+    display: block;
+  }
+  .searchPanel,
+  .mobileCall .phoneList,
+  .messengers ul {
+    inset-inline: 0 auto;
+    max-width: 100%;
+  }
+  .mobileMenu {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    position: fixed;
+    z-index: 5;
+    inset: auto 0 0;
+    padding: brand.$space 0
+      calc(brand.$space + env(safe-area-inset-bottom, 0px));
+    background: brand.$green;
+    color: brand.$milk;
+    font-size: 0.875rem;
+  }
+  .mobileMenu a {
+    display: grid;
+    place-items: center;
+    min-height: brand.$touch-min;
+    text-align: center;
+    text-decoration: none;
+    outline-offset: -3px;
+  }
+}
+
+.logo {
+  display: inline-flex;
+  align-items: center;
+  gap: brand.$space * 1.5;
+  white-space: nowrap;
+}
+.logoMark {
+  display: grid;
+  place-items: center;
+  width: clamp(3rem, 6vw, 4.5rem);
+  aspect-ratio: 1;
+  border: 1px solid currentColor;
+  border-radius: 50%;
+  font-family: Georgia, serif;
+  font-size: 1.5rem;
+}
+.logoText {
+  display: grid;
+}
+.wordmark {
+  font-family: Georgia, serif;
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  font-weight: brand.$font-regular;
+}
+.tagline {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: brand.$space * 1.5;
+}
+.tagline::before,
+.tagline::after {
+  content: "";
+  flex: 0 1 2rem;
+  height: 1px;
+  background: currentColor;
+  opacity: 0.35;
+}
+.menuList {
+  flex-wrap: nowrap;
+  padding-block: 0;
+  font-size: clamp(0.7rem, 1.2vw, 0.9rem);
+}
+.menuList > li > a,
+.menuGroup > button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45em;
+  min-height: brand.$touch-min;
+  white-space: nowrap;
+}
+.menuList .home {
+  min-width: 3rem;
+}
+.menuGroup {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+.menuList .specialistLink { gap: .45em; white-space: nowrap; text-decoration: none; }
+.mobileSpecialistLink { display: grid; place-items: center; text-align: center; min-height: 44px; padding: 10px 8px; font-size: clamp(12px, 3.2vw, 16px); border-radius: 24px; text-decoration: none; }
+.mobileSpecialistLink[aria-current] { background: brand.$milk; }
+.menuGroup > button {
+  border: 0;
+  background: none;
+  color: inherit;
+  padding-inline: brand.$space;
+  cursor: pointer;
+  font: inherit;
+}
+.menuGroup > button:hover,
+.menuGroup > button[aria-expanded="true"] {
+  text-decoration: underline;
+}
+.menuGroup .chevron {
+  display: block;
+  padding: 0;
+  min-height: 0;
+  width: 0.35em;
+  height: 0.35em;
+  border-inline-end: 1px solid;
+  border-block-end: 1px solid;
+  transform: rotate(45deg) translateY(-0.12em);
+  opacity: 1;
+}
+.dropdown {
+  position: absolute;
+  z-index: 4;
+  inset-block-start: calc(100% - 4px);
+  inset-inline-start: 0;
+  min-width: max-content;
+  margin: 0;
+  padding: brand.$space;
+  list-style: none;
+  border: 1px solid brand.$sage;
+  border-radius: brand.$radius-small;
+  background: brand.$milk;
+  color: brand.$green;
+  box-shadow: 0 8px 20px rgb(38 52 46 / 14%);
+}
+.dropdown a {
+  display: flex;
+  min-height: 2rem;
+  border-radius: 0.35rem;
+}
+.dropdown a:hover,
+.dropdown a:focus-visible {
+  background: brand.$sage;
+}
+
+@media (min-width: 48.001rem) {
+  .identity {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr) auto;
+    gap: clamp(0.75rem, 2vw, 1.5rem);
+  }
+  .description,
+  .desktopPhones {
+    border-inline-start: 1px solid rgb(36 72 61 / 40%);
+    padding-inline-start: clamp(0.75rem, 2vw, 1.5rem);
+  }
+  .description {
+    font-size: clamp(0.68rem, 1.2vw, 0.9rem);
+  }
+  .desktopPhones {
+    font-size: clamp(0.7rem, 1.2vw, 0.9rem);
+  }
+  .actions {
+    border-inline-start: 1px solid rgb(36 72 61 / 40%);
+    padding-inline-start: clamp(0.75rem, 2vw, 1.5rem);
+  }
+  .actions summary {
+    font-size: clamp(0.7rem, 1.2vw, 0.875rem);
+  }
+}
+
+.actions .search summary {
+  display: grid;
+  place-items: center;
+  min-width: brand.$touch-min;
+  padding: 0;
+  list-style: none;
+}
+.search summary::-webkit-details-marker {
+  display: none;
+}
+.phoneList a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+}
+.phoneList small {
+  padding-inline-start: calc(17px + 0.45rem);
+}
+
+.stickyMarker { height: 1px; margin-top: -1px; }
+.stickyMenu { position: sticky; top: 12px; z-index: 10; height: 44px; }
+.stickyMenu[data-pinned="true"] .capsule {
+  display: grid;
+  gap: brand.$space;
+  width: min(70rem, calc(100% - 2rem));
+  margin-inline: auto;
+}
+.stickyMenu[data-pinned="true"] .menu, .capsuleContacts {
+  border-radius: 24px;
+  background: brand.$green;
+  box-shadow: 0 6px 20px rgb(38 52 46 / 14%);
+}
+.capsuleContacts {
+  position: relative;
+  z-index: 1;
+  justify-self: end;
+}
+.capsuleContacts:empty { display: none; }
+
+@supports (backdrop-filter: blur(12px)) {
+  .stickyMenu[data-pinned="true"] .menu, .capsuleContacts {
+    background: rgb(36 72 61 / 90%);
+    backdrop-filter: blur(12px) saturate(120%);
+  }
+}
+.capsuleContacts > .contacts {
+  justify-content: center;
+  padding: brand.$space brand.$space * 2;
+  color: brand.$milk;
+}
+.capsuleContacts .desktopPhones, .capsuleContacts .actions { border: 0; padding: 0; }
+.capsuleContacts .phoneList { display: flex; align-items: center; gap: brand.$space * 2; }
+.capsuleContacts .phoneList li + li { margin: 0; }
+.capsuleContacts .phoneList small { font-size: .75rem; }
+.capsuleContacts .actions summary { background: brand.$sage; color: brand.$green; }
+.capsuleContacts .messengers ul { z-index: 6; color: brand.$green; }
+
+@media (max-width: 48rem) {
+  .stickyMarker, .stickyMenu { display: none; }
+}
+
+.actions .messengers summary {
+  display: grid;
+  place-items: center;
+  min-width: brand.$touch-min;
+  min-height: brand.$touch-min;
+  padding: 0;
+  list-style: none;
+}
+.messengers summary::-webkit-details-marker { display: none; }
+
+.header {
+  position: relative;
+  isolation: isolate;
+  background: #faf8f0;
+}
+
+.neurons {
+  position: absolute;
+  z-index: -1;
+  inset-block-start: 0;
+  inset-inline-start: 50%;
+  transform: translateX(-50%);
+  width: min(100%, 96rem);
+  height: auto;
+  pointer-events: none;  
+  top: -25px;
+}
+
+:global(html[data-reading-mode]) .neurons {
+  display: none;
+}
+.header .inner { max-width: 96rem; padding-block: .6rem .85rem; }
+.header .tagline {
+  background: transparent;
+  font-size: clamp(.875rem, 1.35vw, 1.2rem);
+  font-weight: brand.$font-bold;
+}
+.header .identity { padding-top: .6rem; }
+.phoenix { width: clamp(3rem, 5.5vw, 5.25rem); height: auto; mix-blend-mode: multiply; }
+.logoText { gap: .35rem; }
+.logoText > span:last-child {
+  text-transform: uppercase;
+  letter-spacing: .075em;
+  font-weight: brand.$font-bold;
+  font-size: clamp(.625rem, 1.15vw, .875rem);
+}
+.header .wordmark { font-size: clamp(1.5rem, 3vw, 2.65rem); }
+.location strong { font-size: clamp(1.2rem, 2.3vw, 1.65rem); }
+.location ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .5rem;
+  padding: 0;
+  margin: .65rem 0 0;
+  list-style: none;
+  font-size: brand.$font-caption;
+}
+.location li { padding: .3rem .75rem; border-radius: 99px; background: brand.$sage; }
+.location li + li { background: #fce9b8; }
+.stickyMenu[data-pinned="false"] .menu {
+  width: calc(100% - 2rem);
+  max-width: 96rem;
+  margin-inline: auto;
+  border-radius: brand.$radius-large;
+}
+.stickyMenu[data-pinned="false"] .menuList { max-width: none; }
+@media (min-width: 60rem) {
+  .header .identity { grid-template-columns: auto minmax(8rem, 1fr) auto; }
+  .header .location { padding-inline-start: 1rem; border-inline-start: 1px solid rgb(36 72 61 / 40%); }
+  .header .desktopPhones { font-size: clamp(.875rem, 1.5vw, 1.125rem); }
+}
+@media (max-width: 60rem) {
+  .header .identity { display: flex; }
+}
+
+
+.fullContacts .actions summary { display: flex; justify-content: center; gap: .5rem; padding-inline: .85rem; }
+.fullContacts .search summary, .readingMode {
+  border: 1px solid rgb(36 72 61 / 35%);
+  background: brand.$milk;
+  color: brand.$green;
+}
+.readingMode {
+  display: grid;
+  place-items: center;
+  min-width: brand.$touch-min;
+  min-height: brand.$touch-min;
+  border-radius: 99px;
+  cursor: pointer;
+}
+.readingMode[aria-pressed="true"] { background: brand.$green; color: brand.$milk; }
+@media (min-width: 60rem) {
+  .fullContacts .actions { display: grid; grid-template-columns: auto auto; }
+  .fullContacts .search { grid-column: 1 / -1; }
+  .fullContacts .phoneList a svg {
+    width: 36px;
+    height: 36px;
+    padding: 9px;
+    border-radius: 50%;
+    background: brand.$sage;
+  }
+  .fullContacts .phoneList small { margin-top: -.35rem; padding-inline-start: calc(36px + .45rem); }
+}
+:global(html[data-reading-mode]) .header { background: white; color: #111; }
+:global(html[data-reading-mode]) .menu,
+:global(html[data-reading-mode]) .mobileMenu,
+:global(html[data-reading-mode]) .capsuleContacts { background: #111; color: white; }
+
+.stickyMenu { height: 64px; }
+.stickyMenu .capsule .menu {
+  background: #faf8f0;
+  color: brand.$green;
+  border-radius: 2rem;
+  box-shadow: 0 6px 16px rgb(38 52 46 / 12%);
+}
+.stickyMenu[data-pinned="true"] .capsule .menu {
+  background: rgb(250 248 240 / 93%);
+}
+.stickyMenu .menuList {
+  padding: .35rem clamp(.45rem, 1.6vw, 1.4rem);
+  font-size: clamp(.69rem, 1.35vw, 1.1rem);
+  font-weight: brand.$font-bold;
+}
+.menuList > li > a, .menuGroup > button { min-height: 52px; }
+.menuList > li > a svg, .menuGroup > button svg {
+  flex: none;
+  width: clamp(17px, 2.4vw, 28px);
+  height: auto;
+}
+.menuList .home { background: transparent; color: inherit; }
+
+:global(html[data-reading-mode]) .stickyMenu .capsule .menu { background: #111; color: white; }
+
+.header .inner { position: relative; }
+.location { justify-self: start; text-align: left; }
+.location strong, .location li { display: flex; align-items: center; gap: .4rem; }
+.location li svg { width: 1.05rem; height: 1.05rem; flex: none; }
+.location strong svg { width: 1.2em; height: 1.2em; flex: none; }
+
+
+.header .tagline span {
+  background: #faf8f0;
+  box-shadow: 0 0 8px 4px #faf8f0;
+}
+:global(html[data-reading-mode]) .header .tagline span { background: white; box-shadow: none; }
+
+
+@media (min-width: 60rem) {
+  .header .location {
+    justify-self: stretch;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+  }
+}
+
+@media (min-width: 88rem) {
+  .header .desktopPhones .phoneList {
+    display: flex;
+    align-items: flex-start;
+    gap: brand.$space * 2;
+  }
+  .header .desktopPhones .phoneList li + li { margin-top: 0; }
+  .header .desktopPhones .phoneList a { white-space: nowrap; }
+}
+
+.phoneList .phoneLabel {
+  display: flex;
+  align-items: center;
+  gap: .3rem;
+}
+.phoneLabel svg { width: 1em; height: 1em; flex: none; }
+
+.menuList > li:not(.menuGroup) > a[aria-current],
+.menuGroup[data-active="true"] {
+  background: brand.$sage;
+  color: brand.$green;
+  border-radius: brand.$radius-small;
+  text-decoration: none;
+}
+.dropdown a[aria-current] { background: brand.$sage; font-weight: 700; }
+.mobileMenu a[aria-current] { background: brand.$sage; color: brand.$green; text-decoration: none; }
+@media (max-width: 48rem) { .mobileMenu { grid-template-columns: repeat(5, minmax(0, 1fr)); } }
+
+.mobileTopMenu { display: none; }
+@media (max-width: 48rem) {
+  .header { position: sticky; top: 0; z-index: 30; padding-top: env(safe-area-inset-top, 0px); box-shadow: 0 4px 16px rgb(38 52 46 / 8%); }
+  .header .identity { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 12px; }
+  .header .logo { grid-column: 1; }
+  .header .location { display: none; }
+  .header .mobileTopMenu { display: grid; grid-column: 1 / -1; grid-row: 2; }
+  .header .fullContacts { grid-column: 2; grid-row: 1; width: auto; position: static; }
+  .header .fullContacts .actions { display: flex; flex-wrap: nowrap; gap: 8px; }
+  .header .fullContacts .messengers, .header .fullContacts .readingMode { display: none; }
+  .header .fullContacts .actions summary { width: 44px; height: 44px; padding: 0; display: grid; place-items: center; border-radius: 50%; }
+  .header .search summary span { display: none; }
+  .header .mobileCall .phoneList, .header .searchPanel { inset: calc(100% - 8px) 16px auto; width: auto; max-width: none; padding: 20px; border-radius: 20px; box-shadow: 0 8px 24px #26342e24; background: brand.$milk; color: brand.$green; z-index: 20; }
+  .mobileTopMenu { display: grid; grid-template-columns: 1fr 1fr; border-radius: 28px; background: brand.$sage; padding: 4px; gap: 4px; }
+  .specialistDropdown summary { min-height: 44px; padding: 10px 8px; display: grid; place-items: center; text-align: center; font-size: clamp(12px, 3.2vw, 16px); cursor: pointer; list-style: none; border-radius: 24px; }
+  .specialistDropdown summary::-webkit-details-marker { display: none; }
+  .specialistDropdown[open] summary { background: brand.$green; color: brand.$milk; }
+  .specialistDropdown ul { position: absolute; z-index: 21; left: 16px; right: 16px; margin: 8px 0 0; padding: 12px; list-style: none; background: brand.$milk; border: 1px solid brand.$sage; border-radius: 20px; box-shadow: 0 8px 24px #26342e24; }
+  .specialistDropdown a { display: block; padding: 12px; text-decoration: none; }
+  .mobileMenu { inset: auto 12px calc(10px + env(safe-area-inset-bottom, 0px)); border-radius: 30px; padding: 6px; box-shadow: 0 6px 28px #26342e33; gap: 2px; }
+  .mobileMenu a { border-radius: 24px; min-height: 52px; font-size: clamp(9px, 2.5vw, 12px); gap: 3px; padding: 4px 0; }
+  .mobileMenu a svg { width: 21px; height: 21px; }
+  .mobileMenu a[aria-current] { box-shadow: none; }
+}
+
+@media (max-width: 48rem) {
+  .header { background: transparent; padding: calc(10px + env(safe-area-inset-top, 0px)) 12px 0; box-shadow: none; }
+  .header .inner { padding: 0; }
+  .header .identity { display: block; padding: 0; }
+  .header .identity > .logo, .header .identity > .location, .header .identity > .fullContacts,
+  .header .tagline, .header .neurons { display: none; }
+  .header .mobileTopMenu { display: grid; position: relative; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) 44px 44px; gap: 4px; padding: 6px; border-radius: 30px; background: #faf8f0; color: brand.$green; box-shadow: 0 6px 16px rgb(38 52 46 / 12%); }
+  .specialistDropdown summary { display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 4px; height: 60px; padding: 4px 2px; font-size: clamp(10px, 2.8vw, 13px); line-height: 1.2; }
+  .specialistDropdown summary svg { flex: none; width: 24px; height: 24px; }
+  .specialistDropdown[open] summary { background: brand.$sage; color: brand.$green; }
+  .specialistDropdown ul { left: 0; right: 0; color: brand.$green; }
+  .specialistDropdown:has(a[aria-current]) summary { background: brand.$sage; }
+  .unavailablePhone { display: block; padding: 12px; font-size: 15px; }
+  .mobileMenu { background: #faf8f0; color: brand.$green; box-shadow: 0 6px 16px rgb(38 52 46 / 12%); }
+  .mobileMenu a[aria-current] { background: brand.$sage; color: brand.$green; }
+}
+
+.writePanel { position: absolute; z-index: 40; inset: calc(100% + 12px) 0 auto auto; width: min(390px, calc(100vw - 32px)); padding: 24px; border: 0; border-radius: 24px; background: brand.$milk; color: brand.$green; box-shadow: 0 12px 40px rgb(24 61 50 / 18%), 0 2px 8px rgb(24 61 50 / 6%); }
+.writePanel > p { margin: 0 0 16px; font-size: 17px; font-weight: 700; }
+.specialistChoices { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; button { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; min-height: 92px; padding: 12px 8px; border: 0; border-radius: 16px; background: brand.$sage; color: brand.$green; font: inherit; font-size: 14px; cursor: pointer; } button[aria-pressed="true"] { background: brand.$green; color: brand.$milk; } }
+.writeNetworks { margin-top: 18px; display: flex; gap: 12px; p { font-size: 14px; } a { display: flex; flex-direction: column; align-items: center; gap: 6px; padding: 12px; border-radius: 14px; text-decoration: none; font-size: 13px; transition: background .18s, transform .18s; } a:hover, a:focus-visible { background: brand.$sage; transform: translateY(-2px); } }
+.messengers summary { list-style: none; }
+.messengers summary::marker { content: ""; }
+.capsuleContacts .writePanel { inset-block-start: calc(100% + 12px); }
+.dropdown { border: 0; box-shadow: 0 12px 36px rgb(24 61 50 / 16%); padding: 12px; border-radius: 20px; }
+@media(max-width: 48rem) { .mobileTopMenu .writePanel { inset: calc(100% + 12px) 0 auto; width: 100%; } .specialistDropdown ul { border: 0; box-shadow: 0 12px 36px rgb(24 61 50 / 16%); } }
+
+/* Lift the header stacking context above the independently sticky site menu. */
+.header:has(details[open]) { z-index: 60; }
+.capsuleContacts:has(details[open]) { z-index: 60; }
+.messengers:has(.writePanel) { z-index: 61; }
+.dropdown, .specialistDropdown ul, .searchPanel, .mobileCall .phoneList {
+  border: 0; border-radius: 22px;
+  box-shadow: 0 16px 44px rgb(24 61 50 / 18%), 0 3px 10px rgb(24 61 50 / 6%);
+}
+.writeNetworks { flex-wrap: wrap; }
+.writeNetworks a { min-width: 72px; }
+@media (max-width: 48rem) {
+  .header .mobileCall .phoneList, .header .searchPanel, .specialistDropdown ul { border: 0; box-shadow: 0 16px 44px rgb(24 61 50 / 18%), 0 3px 10px rgb(24 61 50 / 6%); }
+}

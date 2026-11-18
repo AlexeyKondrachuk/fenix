@@ -1,0 +1,78 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model SiteContacts {
+  address String @default("г. Тольятти, ул. Офицерская, 31, офис 10")
+  id         Int    @id
+  adultPhone String @default("")
+  childPhone String @default("")
+  max        String @default("")
+  telegram   String @default("")
+  whatsapp   String @default("")
+  vk         String @default("")
+  adultTelegram String @default("")
+  adultVk String @default("")
+  childTelegram String @default("")
+  childVk String @default("")
+  adultMax String @default("")
+  adultWhatsapp String @default("")
+  adultEmail String @default("")
+  childMax String @default("")
+  childWhatsapp String @default("")
+  childEmail String @default("")
+}
+
+model Article {
+  id        String   @id @default(uuid())
+  slug      String?  @unique
+  title     String   @default("")
+  blocks    Json     @default("[]")
+  published Boolean  @default(false)
+  updatedAt DateTime @updatedAt
+  categoryId String?
+  category ArticleCategory? @relation(fields: [categoryId], references: [id], onDelete: SetNull)
+
+  @@index([categoryId])
+}
+
+model ArticleCategory {
+  id String @id @default(uuid())
+  name String @unique
+  articles Article[]
+}
+
+model EducationContent {
+  id          Int    @id
+  description String
+  items       Json
+}
+
+model ConcernsContent {
+  id      Int  @id
+  content Json
+}
+
+model PricesContent {
+  id      Int  @id
+  content Json
+}
+
+model CertificatesContent {
+  id      Int  @id
+  content Json
+}
+
+model Training {
+  id        String  @id @default(uuid())
+  slug      String  @unique
+  title     String
+  published Boolean @default(false)
+  position  Int     @default(0)
+  content   Json
+}

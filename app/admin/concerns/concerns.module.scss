@@ -1,0 +1,17 @@
+@use '../../styles/variables' as brand;
+.form { max-width: 960px; }
+.fields { border: 0; padding: 0; margin: 0; min-width: 0; display: grid; gap: 20px;
+  label { display: grid; gap: 8px; min-width: 0; }
+  input, select, textarea { width: 100%; min-width: 0; padding: 12px; border: 1px solid #183d3255; border-radius: 12px; background: brand.$milk; color: brand.$graphite; font-size: 16px; }
+  textarea { resize: vertical; }
+  button { min-height: 44px; padding: 8px 16px; border: 1px solid brand.$green; border-radius: 12px; background: transparent; color: brand.$green; cursor: pointer; &:disabled { opacity: .45; cursor: default; } }
+  > p { margin: 0; }
+}
+.list { list-style: none; display: grid; gap: 24px; padding: 0; margin: 0;
+  > li { min-width: 0; display: grid; gap: 16px; border-radius: 20px; padding: 24px; background: brand.$sage; }
+}
+.iconChoice { display: flex; align-items: center; gap: 20px; svg { width: 64px; height: 76px; flex: 0 0 64px; color: brand.$green; } label { flex: 1; } }
+.tools { display: flex; flex-wrap: wrap; gap: 8px; }
+.save { position: sticky; bottom: 16px; margin-top: 24px; background: brand.$milk; border: 1px solid #183d3226; padding: 16px; border-radius: 16px; box-shadow: 0 8px 24px #183d3212; display: flex; align-items: center; flex-wrap: wrap; gap: 16px;
+  button { min-height: 44px; padding: 12px 20px; border: 0; border-radius: 12px; background: brand.$green; color: brand.$milk; cursor: pointer; &:disabled { opacity: .6; } } span { font-size: 15px; }
+}

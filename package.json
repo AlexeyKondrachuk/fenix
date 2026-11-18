@@ -1,0 +1,33 @@
+{
+  "name": "fenix",
+  "private": true,
+  "scripts": {
+    "dev": "next dev --turbopack --port 3100",
+    "dev:webpack": "next dev --webpack --port 3100",
+    "dev:turbo": "next dev --turbopack --port 3100",
+    "build": "next build",
+    "start": "next start --port 3100",
+    "postinstall": "prisma generate"
+  },
+  "dependencies": {
+    "@prisma/adapter-pg": "7.10.0",
+    "@prisma/client": "7.10.0",
+    "@reduxjs/toolkit": "^2.14.0",
+    "dotenv": "18.0.4",
+    "next": "16.3.6",
+    "pg": "8.23.0",
+    "react": "19.2.8",
+    "react-dom": "19.2.8",
+    "react-redux": "^9.3.1",
+    "sharp": "^0.35.5",
+    "tar": "^7.5.23"
+  },
+  "devDependencies": {
+    "@types/node": "^24",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "prisma": "7.10.0",
+    "sass": "1.105.0",
+    "typescript": "^5"
+  }
+}

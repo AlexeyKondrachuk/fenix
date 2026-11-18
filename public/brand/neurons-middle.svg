@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1110 95">
+ <defs>
+  <linearGradient id="threads"><stop stop-color="#d7b252" stop-opacity="0"/><stop offset=".16" stop-color="#d5a842" stop-opacity=".72"/><stop offset=".48" stop-color="#809062" stop-opacity=".73"/><stop offset=".8" stop-color="#dca93e" stop-opacity=".75"/><stop offset="1" stop-color="#deb346" stop-opacity="0"/></linearGradient>
+  <radialGradient id="glow"><stop stop-color="#fff6ad"/><stop offset=".24" stop-color="#ffd65c"/><stop offset=".46" stop-color="#e7a330" stop-opacity=".8"/><stop offset="1" stop-color="#b8a059" stop-opacity="0"/></radialGradient>
+ </defs>
+ <g fill="none" stroke="url(#threads)" stroke-linecap="round">
+  <path d="M6 28C64 21 104 74 188 44S279 18 337 39S420 93 490 65S545 67 577 50S643 12 700 36S769 67 815 36S923 67 1020 36S1074 20 1103 8M188 44C120 69 90 48 58 30M188 44C150 41 145 26 125 16M188 44C238 57 275 50 310 26M577 50C529 67 523 28 487 27M577 50C591 75 610 78 636 83M1020 36C994 51 974 50 946 47M1020 36C1040 45 1060 45 1083 41" stroke-width="2.2"/>
+  <path d="M70 38q-14-17-33-19m53 31q-16 7-33 7m70-1q-17 12-41 12m76-18q-9-10-18-10m43 5 8-22m-7 23 18 17m341-14q-16-15-35-18m58 14-8-18m19 20 8-24m-8 30-16 17m438-36-11-16m14 20 12 18m21-30q15 3 31-2" stroke-width=".9"/>
+ </g>
+ <g transform="translate(188 44) scale(0.65)"><path fill="#8a985b" opacity=".64" d="M-25-13Q-8-3-6-20Q0-5 14-19Q5-5 24-4Q8 1 18 17Q3 6-2 22Q-5 8-19 17Q-9 4-26 4Q-9 0-25-13Z"/><circle r="15" fill="url(#glow)"/></g>
+ <g transform="translate(577 50) scale(0.95)"><path fill="#8a985b" opacity=".64" d="M-25-13Q-8-3-6-20Q0-5 14-19Q5-5 24-4Q8 1 18 17Q3 6-2 22Q-5 8-19 17Q-9 4-26 4Q-9 0-25-13Z"/><circle r="15" fill="url(#glow)"/></g>
+ <g transform="translate(1020 36) scale(0.6)"><path fill="#8a985b" opacity=".64" d="M-25-13Q-8-3-6-20Q0-5 14-19Q5-5 24-4Q8 1 18 17Q3 6-2 22Q-5 8-19 17Q-9 4-26 4Q-9 0-25-13Z"/><circle r="15" fill="url(#glow)"/></g>
+</svg>

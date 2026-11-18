@@ -1,0 +1,24 @@
+﻿@use '../../app/styles/typography' as typography;
+@use '../../app/styles/variables' as brand;
+$gold: #aa8b43;
+.panel { background: var(--education-surface, #fbfaf6); border-radius: 28px; padding: clamp(24px, 3vw, 40px); box-shadow: 0 12px 36px #26342e0a; min-width: 0; .heading { display: flex; align-items: center; gap: 16px; @include typography.card-heading; margin: 0 0 28px; svg { flex: 0 0 44px; width: 44px; height: 44px; color: var(--education-accent, #{$gold}); } } }
+.timelineLayout { display: grid; grid-template-columns: minmax(0, 1fr) 44px; gap: 16px; }
+.scrollArea { max-height: 500px; overflow-y: auto; overscroll-behavior-y: contain; scrollbar-color: brand.$green #e8e3d7; scrollbar-width: thin; padding: 8px 16px 8px 4px; border-radius: 4px; }
+.timeline { list-style: none; padding: 0 0 0 24px; margin: 0; position: relative; &::before { content: ''; position: absolute; left: 5px; top: 17px; bottom: 17px; width: 1px; background: var(--education-line, #aa8b4344); } li { position: relative; padding: 0 0 26px 8px; font-size: clamp(16px, 1.4vw, 19px); line-height: 1.6; overflow-wrap: anywhere; &:last-child { padding-bottom: 0; } &::before { content: ''; position: absolute; left: -24px; top: .55em; width: 11px; height: 11px; border-radius: 50%; background: var(--education-accent, #{$gold}); box-shadow: 0 0 0 4px var(--education-surface, #fbfaf6); } } strong { color: brand.$green; } }
+.scrollControls { display: flex; flex-direction: column; align-items: center; gap: 12px; button { display: grid; place-items: center; width: 44px; height: 44px; border: 0; border-radius: 50%; background: var(--education-control, #f5eddc); color: brand.$green; cursor: pointer; &:hover { background: brand.$sage; } } svg { width: 24px; height: 24px; fill: none; stroke: currentColor; stroke-width: 1.8; } span { flex: 1; } }
+.peach {
+  --education-accent: #986446;
+  --education-line: #{brand.$peach};
+  --education-surface: #fcf6f1;
+  --education-control: #{brand.$peach};
+}
+@media (max-width: 640px) {
+  .timelineLayout { grid-template-columns: minmax(0, 1fr); gap: 0; }
+  .scrollControls { display: none; }
+  .scrollArea { overscroll-behavior-y: auto; }
+}
+@media (max-width: 480px) {
+  .panel { padding: 24px 16px; }
+  .timelineLayout { gap: 4px; }
+  .scrollArea { max-height: 430px; padding-right: 8px; }
+}

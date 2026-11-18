@@ -1,0 +1,5 @@
+@use '../styles/typography' as typography;
+@use '../styles/variables' as brand;
+.main { max-width: 1400px; margin: auto; padding: 28px 24px 88px; > nav { margin-bottom: 36px; } }
+.details { margin-top: 64px; padding-top: 32px; border-top: 1px solid #183d3226; scroll-margin-top: 160px; h2 { @include typography.section-heading; } p { max-width: 72ch; } }
+@media (max-width: 48rem) { .main { padding: 20px 18px calc(96px + env(safe-area-inset-bottom, 0px)); } .details { scroll-margin-top: 240px; } }

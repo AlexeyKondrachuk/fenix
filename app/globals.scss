@@ -1,0 +1,20 @@
+@use "styles/variables" as brand;
+
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: brand.$milk;
+  color: brand.$graphite;
+  font: brand.$font-regular brand.$font-body / brand.$leading-body brand.$font-family;
+}
+a { color: inherit; }
+:focus-visible { outline: 2px solid currentColor; outline-offset: 4px; }
+h1, h2 { line-height: brand.$leading-heading; }
+input, textarea, button { font: inherit; }
+
+html[data-reading-mode] { font-size: 112.5%; }
+html[data-reading-mode] body { background: white; color: #111; }
+
+@media (max-width: 48rem) {
+  body { padding-bottom: calc(86px + env(safe-area-inset-bottom, 0px)); }
+}

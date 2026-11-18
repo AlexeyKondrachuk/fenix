@@ -1,0 +1,19 @@
+@use './variables' as brand;
+
+@mixin section-heading {
+  color: brand.$green;
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: clamp(32px, 3.6vw, 40px);
+  font-weight: 700;
+  line-height: 1.15;
+  letter-spacing: -.025em;
+}
+
+@mixin card-heading {
+  color: brand.$green;
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: clamp(24px, 2.4vw, 34px);
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -.025em;
+}

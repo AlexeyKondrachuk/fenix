@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1400 80" preserveAspectRatio="none">
+  <defs>
+    <radialGradient id="glow">
+      <stop stop-color="#fffad4"/>
+      <stop offset=".18" stop-color="#ffd85a"/>
+      <stop offset=".42" stop-color="#dc9e36" stop-opacity=".8"/>
+      <stop offset="1" stop-color="#c7b35c" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="thread">
+      <stop stop-color="#c5ad69" stop-opacity="0"/>
+      <stop offset=".2" stop-color="#c7a44f" stop-opacity=".6"/>
+      <stop offset=".5" stop-color="#a4a36c" stop-opacity=".55"/>
+      <stop offset=".8" stop-color="#d4a54e" stop-opacity=".6"/>
+      <stop offset="1" stop-color="#c5ad69" stop-opacity="0"/>
+    </linearGradient>
+    <g id="cell">
+      <path fill="#88986b" opacity=".55" d="M-18-8Q-5-4-5-18Q0-5 12-15Q5-3 19-2Q7 2 14 14Q3 6-1 19Q-4 6-16 12Q-8 3-20 2Q-8 0-18-8Z"/>
+      <circle r="14" fill="url(#glow)"/>
+      <circle r="2.2" fill="#fff4b4"/>
+    </g>
+    <mask id="clear-text">
+      <rect width="1400" height="80" fill="white"/>
+      <rect x="300" y="0" width="800" height="51" fill="black"/>
+    </mask>
+  </defs>
+  <g mask="url(#clear-text)" fill="none" stroke="url(#thread)" stroke-linecap="round">
+    <path stroke-width="1.15" d="M66 37C40 34 30 15 10 10M66 37C52 21 55 10 48 2M66 37C88 31 96 18 121 15S149 3 163 1M66 37C43 46 31 59 8 62M66 37C91 41 109 58 145 55S187 37 232 38M66 37C70 55 82 61 101 68
+      M212 59C275 42 304 78 365 60S433 51 481 60S529 77 578 65S613 58 650 61S682 75 710 64S759 43 805 57S859 75 902 61S956 51 1001 60S1050 70 1090 56S1147 39 1200 47
+      M1332 32C1309 26 1300 10 1280 3M1332 32C1336 18 1327 9 1334 1M1332 32C1353 24 1361 11 1388 7M1332 32C1350 40 1365 49 1394 45M1332 32C1321 48 1297 58 1272 55S1228 45 1200 47M1332 32C1344 49 1350 60 1352 72"/>
+    <path stroke-width=".55" d="M32 22 20 16M49 16 39 5M99 24l15-11m15 2 14-8M30 51 16 53m95 2 10 9M264 50l-20-9m52 15-16 8m61 1 18 8m18-14 8-11m-8 16 13 9m172-10-15-10m25 9 5-12m3 15 12 9m141-9-15-11m27 11 8-12m3 16 12 8m176-7-12-10m24 8 7-12m5 15 13 7m121-15-12-11m33 5 13-9m18 21 16 4m-44 15 9 13m-42-10-10 10"/>
+  </g>
+  <g mask="url(#clear-text)">
+    <use href="#cell" transform="translate(66 37) scale(.8)"/>
+    <use href="#cell" transform="translate(365 60) scale(.42)"/>
+    <use href="#cell" transform="translate(710 64) scale(.57)"/>
+    <use href="#cell" transform="translate(1090 56) scale(.4)"/>
+    <use href="#cell" transform="translate(1332 32) scale(.85)"/>
+  </g>
+</svg>

@@ -1,0 +1,33 @@
+﻿@use '../../components/psychotherapist/PsychotherapistIntro.module.scss';
+@use '../styles/variables' as brand;
+.card { background: #fcf6f1; }
+.portrait { background: brand.$peach; }
+.divider, .copy h1::after { background: brand.$peach; }
+.qualifications svg, .direct svg { color: #986446; }
+.direct .phone svg { color: brand.$graphite; background: brand.$peach; }
+.contacts { border-top-color: brand.$peach; }
+.socials a { background: brand.$peach; color: brand.$green; }
+.socials a {
+  border-radius: brand.$radius-small;
+  transition: background-color .2s ease;
+  &:hover { background: #eac5ac; color: brand.$graphite; }
+  &:focus-visible { outline: 2px solid #986446; outline-offset: 3px; }
+}
+.direct .phone {
+  &:focus-visible { outline: 2px solid #986446; outline-offset: 3px; }
+  svg { transition: background-color .2s ease; }
+  svg:hover { background: #eac5ac; }
+}
+.actions a {
+  background: brand.$peach;
+  color: brand.$graphite;
+  border-color: brand.$peach;
+  transition: background-color .2s ease;
+  &:hover { background: #eac5ac; color: brand.$graphite; }
+  &:focus-visible { outline: 2px solid #986446; outline-offset: 3px; }
+}
+.education {
+  margin-top: 40px;
+  scroll-margin-top: 160px;
+}
+

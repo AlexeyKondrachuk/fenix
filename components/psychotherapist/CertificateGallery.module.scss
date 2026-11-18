@@ -1,0 +1,41 @@
+@use '../../app/styles/variables' as brand;
+@use '../../app/styles/typography' as typography;
+.section { margin-top: 88px; scroll-margin-top: 160px; min-width: 0; }
+.heading { @include typography.section-heading; margin: 0 0 20px; text-align: center; }
+.gallery { --slide-step: clamp(140px, 19vw, 250px); isolation: isolate; }
+.stage { position: relative; height: 500px; padding: 0; margin: 0; list-style: none; overflow: hidden; touch-action: pan-y pinch-zoom;
+  &::before { content: ''; position: absolute; inset: 12% 10% 0; background: radial-gradient(ellipse at 50% 70%, #e7ebdd99, transparent 65%); pointer-events: none; }
+  &::after { content: ''; position: absolute; left: 8%; right: 8%; bottom: 25px; height: 80px; background: radial-gradient(ellipse, #80765b26 0, #80765b0a 42%, transparent 70%); pointer-events: none; }
+}
+.slide { position: absolute; left: 50%; bottom: 58px; width: min(56%, 610px); height: 400px; transform-origin: center bottom;
+  transform: translateX(calc(-50% + var(--offset) * var(--slide-step))) translateY(calc(var(--depth) * -12px)) scale(calc(1 - var(--depth) * .15)) rotate(calc(var(--offset) * 2deg));
+  opacity: calc(1 - var(--depth) * .23); transition: transform .55s cubic-bezier(.22, 1, .36, 1), opacity .45s; visibility: visible;
+  &[data-hidden] { opacity: 0; visibility: hidden; pointer-events: none; }
+  &[data-active] { opacity: 1; }
+  > button { position: relative; display: flex; align-items: flex-end; justify-content: center; width: 100%; height: 100%; padding: 0; border: 0; background: transparent; cursor: pointer; -webkit-tap-highlight-color: transparent;
+    &:focus-visible { outline: 2px solid brand.$green; outline-offset: 8px; border-radius: 4px; }
+  }
+  img { display: block; max-width: 100%; max-height: 100%; width: auto; height: auto; border-radius: 2px; box-shadow: 0 2px 3px #26342e18, 5px 12px 18px #26342e1a, 10px 28px 30px -12px #26342e40; user-select: none; }
+  &[data-active] img { box-shadow: 0 1px 2px #26342e26, 6px 12px 20px #26342e20, 12px 32px 32px -14px #26342e55; }
+}
+.zoomHint { position: absolute; bottom: -20px; left: calc(50% - 20px); display: grid; place-items: center; width: 40px; height: 40px; border-radius: 50%; background: brand.$green; color: white; font-size: 23px; box-shadow: 0 5px 14px #183d3226; }
+.details { position: relative; z-index: 12; display: grid; justify-items: center; gap: 14px; min-height: 124px; max-width: 780px; margin: 0 auto; padding: 0 16px; text-align: center; }
+.caption { align-self: end; margin: 0; color: brand.$green; font: 700 clamp(22px, 2.2vw, 29px)/1.3 Georgia, serif; text-wrap: balance; }
+.tags { display: flex; align-items: flex-start; justify-content: center; flex-wrap: wrap; gap: 8px; span { padding: 7px 14px; border: 1px solid #aa8b432b; border-radius: 24px; color: #55461f; background: #f3ead4; font-size: 15px; line-height: 1.3; font-weight: 700; } .documentTag { color: brand.$green; background: brand.$sage; border-color: transparent; font-weight: 400; } }
+.controls { display: flex; justify-content: center; align-items: center; gap: 22px; margin-top: 24px; color: brand.$green; > span { min-width: 52px; text-align: center; font-size: 18px; font-variant-numeric: tabular-nums; } .total { color: #718174; } }
+.controls button, .viewer button { width: 44px; min-height: 44px; border: 0; border-radius: 50%; background: brand.$sage; color: brand.$green; cursor: pointer; font-size: 22px; &:disabled { opacity: .35; cursor: default; } }
+.controls button { width: 48px; min-height: 48px; background: brand.$green; color: brand.$milk; }
+.pagination { display: flex; justify-content: center; flex-wrap: wrap; max-width: 600px; margin: 10px auto 0; button { display: grid; place-items: center; width: 24px; height: 32px; border: 0; padding: 0; background: transparent; cursor: pointer; &::after { content: ''; width: 6px; height: 6px; border-radius: 5px; background: #183d3233; transition: width .2s, background .2s; } &[aria-current]::after { width: 20px; background: #aa8b43; } } }
+.dialog { position: fixed; inset: 0; width: 100vw; max-width: none; height: 100dvh; max-height: none; margin: 0; border: 0; padding: 16px; background: #15201ef5; color: white; &::backdrop { background: #15201e; } }
+.viewer { height: 100%; display: grid; grid-template-rows: auto minmax(0, 1fr) auto; gap: 12px; max-width: 1800px; margin: auto; }
+.toolbar { display: flex; gap: 12px; align-items: center; span { margin-right: auto; } button:first-of-type { width: auto; padding: 0 18px; border-radius: 24px; font-size: 16px; } }
+.canvas { min-height: 0; overflow: auto; display: flex; justify-content: center; align-items: center; img { display: block; max-width: 100%; max-height: 100%; object-fit: contain; } }
+.zoomed { display: block; img { width: max(100%, 1200px); max-width: none; max-height: none; height: auto; margin: auto; } }
+.viewerFooter { display: flex; gap: 16px; align-items: center; justify-content: space-between; p { margin: 0; text-align: center; max-width: 900px; font-size: 16px; line-height: 1.4; } button { flex: 0 0 44px; } }
+@media (max-width: 900px) { .stage { height: 430px; } .slide { height: 340px; width: 62%; } }
+@media (max-width: 640px) {
+  .section { margin-top: 56px; } .gallery { --slide-step: 48vw; } .stage { height: 350px; margin-inline: -18px; } .slide { width: 74%; height: 280px; bottom: 42px; } .stage::after { bottom: 12px; }
+  .details { min-height: 132px; padding: 0; } .caption { font-size: 21px; } .tags { gap: 6px; span { font-size: 13px; padding: 7px 11px; } .documentTag { display: none; } }
+  .controls { margin-top: 20px; } .dialog { padding: 12px; } .viewerFooter { gap: 8px; p { font-size: 14px; } }
+}
+@media (prefers-reduced-motion: reduce) { .slide, .pagination button::after { transition: none; } }

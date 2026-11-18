@@ -1,0 +1,42 @@
+@use '../../app/styles/variables' as brand;
+
+.panel {
+  container-type: inline-size;
+  margin-top: 36px;
+  padding: 26px;
+  border: 1px solid #aa8b4326;
+  border-radius: brand.$radius-large;
+  background: #fbfaf6;
+  color: brand.$graphite;
+
+  h2 {
+    margin: 0 0 22px;
+    color: brand.$green;
+    font: 700 24px/1.25 Georgia, 'Times New Roman', serif;
+  }
+}
+
+.steps {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 22px;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.step {
+  min-width: 0;
+  h3 { margin: 10px 0 8px; color: brand.$green; font-size: 16px; line-height: 1.4; }
+}
+
+.steps .step p { margin: 0; font-size: 14px; line-height: 1.55; }
+.number { display: block; color: #9b803e; font: 400 25px/1 Georgia, 'Times New Roman', serif; }
+
+@container (max-width: 500px) {
+  .steps { grid-template-columns: minmax(0, 1fr); gap: 20px; }
+  .step { display: grid; grid-template-columns: 32px minmax(0, 1fr); gap: 14px; h3 { margin-top: 0; } }
+  .number { padding-top: 3px; }
+}
+
+@media (max-width: 700px) { .panel { padding: 22px 20px; margin-top: 28px; } }

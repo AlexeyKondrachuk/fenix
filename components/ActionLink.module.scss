@@ -1,0 +1,17 @@
+@use '../app/styles/variables' as brand;
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: .5rem 1rem;
+  min-height: brand.$touch-min;
+  border-radius: brand.$radius-small;
+  background: brand.$green;
+  color: brand.$milk;
+  text-decoration: none;
+  text-align: center;
+  line-height: 1.4;
+  &:hover { background: #245442; }
+  svg { flex-shrink: 0; }
+}

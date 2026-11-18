@@ -1,0 +1,67 @@
+﻿@use '../../app/styles/typography' as typography;
+@use '../../app/styles/variables' as brand;
+$gold: #aa8b43;
+.section { display: grid; grid-template-columns: minmax(0, .85fr) minmax(0, 1.65fr); gap: clamp(28px, 4vw, 64px); align-items: start; margin-top: 88px; scroll-margin-top: 160px; }
+.motif { display: flex; align-items: center; gap: 24px; color: $gold; svg { width: 64px; height: 64px; } span { width: 120px; height: 1px; background: linear-gradient(90deg, $gold, #aa8b4322); } }
+.intro { h2 { @include typography.section-heading; margin: 20px 0 32px; letter-spacing: -.025em; } p { font-size: clamp(17px, 1.5vw, 20px); line-height: 1.7; margin: 0; white-space: pre-line; } }
+.methods {
+  --badge-size: min(82px, 25%);
+  display: flex;
+  isolation: isolate;
+  position: relative;
+  max-width: 328px;
+  padding: 0;
+  margin: 36px 0 0;
+  list-style: none;
+
+  li {
+    display: grid;
+    place-items: center;
+    flex: 0 0 var(--badge-size);
+    min-width: 0;
+    aspect-ratio: 1;
+    box-sizing: border-box;
+    border: 1px solid rgba(brand.$green, .18);
+    border-radius: 50%;
+    background: brand.$milk;
+    box-shadow: 0 6px 16px rgba(brand.$green, .12);
+
+    & + li { margin-inline-start: calc(var(--badge-size) / -4); }
+  }
+
+  img {
+    display: block;
+    width: 70%;
+    height: auto;
+    aspect-ratio: 1;
+    object-fit: contain;
+    mix-blend-mode: multiply;
+    transform: translateX(-6%);
+  }
+
+  li:last-child img { transform: none; }
+
+  li:hover .badgeTooltip,
+  &:not(:hover) li:focus .badgeTooltip,
+  li:focus-visible .badgeTooltip {
+    opacity: 1;
+  }
+  &:has(li:hover) li:not(:hover) .badgeTooltip { opacity: 0; }
+}
+
+.badgeTooltip {
+  position: absolute;
+  inset: auto 0 100%;
+  z-index: 1;
+  padding: .5rem .75rem;
+  border-radius: brand.$radius-small;
+  background: brand.$green;
+  color: brand.$milk;
+  font-size: .875rem;
+  text-align: center;
+  opacity: 0;
+  pointer-events: none;
+}
+@media (max-width: 900px) { .section { grid-template-columns: minmax(0, 1fr); margin-top: 56px; } .intro p { max-width: 70ch; } .methods { margin-top: 24px; } }
+@media (max-width: 480px) { .methods { --badge-size: min(68px, 25%); } }
+

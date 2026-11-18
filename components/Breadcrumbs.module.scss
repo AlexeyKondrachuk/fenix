@@ -1,0 +1,9 @@
+.breadcrumbs {
+  font-size: 14px;
+  color: #64665b;
+  ol { display: flex; flex-wrap: wrap; gap: 10px 14px; padding: 0; margin: 0; list-style: none; }
+  li { display: flex; gap: 14px; min-width: 0; overflow-wrap: anywhere; }
+  a { text-decoration: none; }
+  a:hover { text-decoration: underline; text-underline-offset: 4px; }
+  [aria-current] { color: #24483d; }
+}

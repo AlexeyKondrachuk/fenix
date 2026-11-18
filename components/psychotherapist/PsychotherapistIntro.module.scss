@@ -1,0 +1,214 @@
+@use '../../app/styles/typography' as typography;
+@use "../../app/styles/variables" as brand;
+$accent: #9b8956;
+.intro {
+  display: grid;
+  grid-template-columns: minmax(300px, 0.9fr) minmax(0, 1.6fr);
+  gap: clamp(28px, 4vw, 64px);
+  align-items: start;
+}
+.card {
+  background: #fbfaf6;
+  border-radius: 28px;
+  overflow: hidden;
+  box-shadow: 0 10px 36px rgb(38 52 46 / 6%);
+  min-width: 0;
+  h2 {
+    @include typography.card-heading;
+    text-align: center;
+    margin: 0 0 16px;
+  }
+}
+.cardBody {
+  padding: clamp(20px, 2vw, 28px);
+}
+.portrait {
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  margin: 0;
+  overflow: hidden;
+  background: brand.$sage;
+  img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 35%;
+  }
+}
+.divider {
+  display: block;
+  width: 64px;
+  height: 2px;
+  background: $accent;
+  margin: 0 auto 24px;
+}
+.qualifications {
+  display: grid;
+  gap: 14px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  li {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    font-size: 16px;
+    line-height: 1.45;
+  }
+  svg {
+    flex: 0 0 28px;
+    color: $accent;
+  }
+}
+.contacts {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 20px;
+  border-top: 1px solid #9b895633;
+  margin-top: 24px;
+  padding-top: 24px;
+}
+.direct {
+  display: grid;
+  gap: 10px;
+  min-width: 0;
+  a {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    min-height: 44px;
+    font-size: 16px;
+    text-decoration: none;
+    overflow-wrap: anywhere;
+  }
+  svg {
+    flex: 0 0 26px;
+    color: $accent;
+  }
+}
+.direct .phone {
+  font-size: clamp(18px, 1.7vw, 24px);
+  color: brand.$green;
+  white-space: nowrap;
+  overflow-wrap: normal;
+  font-weight: 700;
+  svg {
+    color: brand.$green;
+    flex-basis: 36px;
+  }
+}
+.socials {
+  display: flex;
+  gap: 8px;
+  a {
+    display: grid;
+    place-items: center;
+    min-width: 44px;
+    min-height: 44px;
+    border-radius: brand.$radius-small;
+    background: brand.$green;
+    color: brand.$milk;
+  }
+}
+.copy {
+  min-width: 0;
+  h1 {
+    display: flex;
+    align-items: center;
+    gap: 28px;
+    margin: 0 0 28px;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: clamp(40px, 4.5vw, 48px);
+    color: brand.$green;
+    letter-spacing: -0.025em;
+    &::after {
+      content: "";
+      width: 120px;
+      height: 2px;
+      background: $accent;
+    }
+  }
+  p {
+    margin: 0 0 24px;
+    line-height: 1.65;
+    font-size: clamp(17px, 1.5vw, 20px);
+  }
+  p a {
+    color: brand.$green;
+    text-underline-offset: 4px;
+  }
+}
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-top: 36px;
+  font-size: 16px;
+  a {
+    min-height: 52px;
+  }
+}
+.values {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  padding: 0;
+  list-style: none;
+  margin: 44px 0 0;
+  gap: 20px;
+  li {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    font-size: 15px;
+    line-height: 1.4;
+    &:not(:last-child) {
+      border-right: 1px solid #9b895666;
+      padding-right: 16px;
+    }
+  }
+  svg {
+    color: $accent;
+    width: 36px;
+    height: 36px;
+    flex: 0 0 36px;
+  }
+}
+@media (max-width: 1000px) {
+  .intro {
+    grid-template-columns: minmax(260px, 0.8fr) minmax(0, 1.2fr);
+    gap: 28px;
+  }
+  .values {
+    grid-template-columns: 1fr;
+    gap: 16px;
+    li:not(:last-child) {
+      border: 0;
+      padding: 0;
+    }
+  }
+  .copy h1::after {
+    width: 60px;
+  }
+}
+@media (max-width: 700px) {
+  .intro {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .card {
+    max-width: 480px;
+    width: 100%;
+    margin: auto;
+  }
+  .copy h1 {
+    margin-top: 12px;
+  }
+  .actions {
+    display: grid;
+  }
+  .values {
+    margin-top: 28px;
+  }
+}

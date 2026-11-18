@@ -1,0 +1,51 @@
+@use '../../app/styles/variables' as brand;
+@use '../../app/styles/typography' as typography;
+$gold: #aa8b43;
+.main { max-width: 1400px; margin: auto; padding: 28px 24px 80px; > nav { margin-bottom: 28px; } }
+.hero { position: relative; display: grid; grid-template-columns: minmax(0, .95fr) minmax(0, 1.2fr); align-items: center; min-height: 360px; border-radius: 28px; background: linear-gradient(110deg, brand.$milk, #f5eee2); overflow: hidden; }
+.heroCopy { position: relative; z-index: 1; padding: 36px; h1 { @include typography.section-heading; font-size: clamp(36px, 4.5vw, 60px); margin: 16px 0 24px; } p { font-size: clamp(18px, 1.8vw, 23px); line-height: 1.5; max-width: 36ch; margin: 0 0 28px; } }
+.eyebrow { display: flex; align-items: center; gap: 14px; color: $gold; font-size: 14px; text-transform: uppercase; letter-spacing: .08em; &::before { content: ''; height: 1px; width: 40px; background: $gold; } }
+.room { align-self: stretch; display: grid; align-items: center; img { display: block; width: 100%; height: 100%; min-height: 320px; object-fit: cover; object-position: center; } }
+.benefits { position: relative; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); list-style: none; margin: 20px 0 56px; padding: 24px 12px; border: 1px solid #fff; border-radius: 24px; background: #fffaf2; box-shadow: 0 8px 22px #26342e08; li { display: flex; align-items: center; gap: 16px; min-width: 0; padding: 0 20px; font-size: 17px; line-height: 1.4; &:not(:last-child) { border-right: 1px solid #aa8b4355; } } svg { color: $gold; flex: 0 0 46px; width: 46px; height: 46px; } }
+.schedule { scroll-margin-top: 180px; }
+.sectionTitle { @include typography.section-heading; max-width: 900px; text-align: center; margin: 0 auto 36px; }
+.grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 28px; }
+.card { min-width: 0; background: #fffaf3; border-radius: 24px; box-shadow: 0 7px 20px #26342e0c; border: 1px solid #fff; transition: box-shadow .18s, transform .18s; &:hover { transform: translateY(-3px); box-shadow: 0 12px 26px #26342e16; } }
+.cardLink { display: flex; flex-direction: column; color: inherit; text-decoration: none; height: 100%; border-radius: inherit; overflow: hidden; &:focus-visible { outline-offset: 5px; } }
+.cardHeader { display: flex; align-items: center; gap: 16px; padding: 22px 24px; min-height: 114px; color: brand.$milk; background: linear-gradient(120deg, #225745, brand.$green); > svg { color: #dec785; flex: 0 0 44px; } > svg:last-child { width: 32px; height: 32px; flex-basis: 32px; margin-left: auto; } > div { min-width: 0; } h3 { font-size: clamp(21px, 2vw, 27px); line-height: 1.25; margin: 0; overflow-wrap: normal; hyphens: none; } }
+.badge { display: inline-block; margin-top: 10px; padding: 4px 12px; border-radius: 20px; background: #eddfb2; color: brand.$green; font-size: 13px; font-weight: 700; }
+.cardPhoto { display: block; width: 100%; height: 220px; object-fit: cover; }
+.cardBody { display: flex; flex-direction: column; flex: 1; padding: 24px; > p { margin: 0 0 20px; font-size: 17px; line-height: 1.5; } }
+.cardInfo { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr); gap: 22px; align-items: start; }
+.facts { margin: 0; display: grid; gap: 14px; > div { display: flex; align-items: flex-start; gap: 12px; min-width: 0; > div { min-width: 0; } } svg { width: 25px; height: 25px; flex: 0 0 25px; color: $gold; } dt { font-weight: 700; font-size: 15px; line-height: 1.35; } dd { margin: 3px 0 0; font-size: 16px; line-height: 1.4; overflow-wrap: normal; white-space: pre-line; } }
+.dates { min-width: 0; padding: 18px; border: 1px solid #aa8b4329; background: #f8f0e3; border-radius: 16px; h3 { display: flex; align-items: center; gap: 10px; margin: 0 0 14px; font-size: 18px; svg { flex: 0 0 25px; width: 25px; height: 25px; color: $gold; } } ul { padding-left: 18px; margin: 0; display: grid; gap: 12px; } li, p { font-size: 15px; line-height: 1.4; overflow-wrap: normal; } p { margin: 0; } small { display: block; margin-top: 4px; font-size: 13px; } .past { color: #697568; } }
+.more { display: flex; justify-content: space-between; align-items: center; padding-top: 24px; margin-top: auto; font-size: 15px; color: brand.$green; font-weight: 700; span { font-size: 22px; color: $gold; } }
+.notice { display: flex; align-items: center; gap: 22px; border-radius: 20px; background: brand.$sage; padding: 24px; margin-top: 32px; > svg { flex: 0 0 40px; width: 40px; height: 40px; color: $gold; } p { margin: 0; font-size: 16px; line-height: 1.5; } }
+.contact { display: flex; align-items: center; flex-wrap: wrap; gap: 28px; padding: 32px; margin-top: 32px; background: brand.$green; color: brand.$milk; border-radius: 24px; scroll-margin-top: 180px; > svg { width: 64px; height: 64px; flex: 0 0 64px; color: #dfc481; } > div { flex: 1 1 280px; } h2 { font-family: Georgia, serif; font-size: clamp(24px, 2.5vw, 32px); line-height: 1.2; margin: 0 0 10px; } p { font-size: 17px; margin: 0; } }
+.phone, .enroll { display: inline-flex; align-items: center; justify-content: center; min-height: 48px; padding: 12px 24px; border-radius: 30px; background: #eddfb2; color: brand.$green; font-size: 20px; font-weight: 700; text-decoration: none; text-align: center; }
+.empty { padding: 40px; border-radius: 20px; background: brand.$sage; text-align: center; }
+.detailHeader { display: flex; align-items: flex-start; gap: 24px; margin: 36px 0; > svg { color: $gold; width: 72px; height: 72px; flex: 0 0 72px; } h1 { @include typography.section-heading; margin: 12px 0 20px; overflow-wrap: normal; } p { font-size: 21px; line-height: 1.5; max-width: 70ch; margin: 0; } }
+.detailGrid { display: grid; grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr); gap: 40px; align-items: start; }
+.description { min-width: 0; h2 { @include typography.card-heading; margin-top: 0; } p { white-space: pre-line; overflow-wrap: normal; font-size: 19px; line-height: 1.7; } }
+.detailFacts { min-width: 0; display: grid; gap: 24px; padding: 28px; background: #fffaf3; border-radius: 24px; .enroll { font-size: 17px; } }
+.photos { margin-top: 48px; h2 { @include typography.card-heading; } > div { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; } a { display: block; } img { display: block; width: 100%; height: 340px; object-fit: contain; border-radius: 20px; background: #eeeae1; } }
+.back { display: inline-block; margin-top: 32px; color: brand.$green; text-underline-offset: 4px; }
+.heroCopy { min-width: 0; h1 { overflow-wrap: normal; hyphens: none; } }
+.benefits li span, .sectionTitle { min-width: 0; overflow-wrap: normal; hyphens: none; }
+.main { word-break: normal; overflow-wrap: normal; hyphens: none; }
+@media (max-width: 1150px) { .benefits { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px 0; li:nth-child(2) { border: 0; } } .cardInfo { grid-template-columns: minmax(0, 1fr); } .cardHeader { padding: 20px; gap: 12px; > svg { flex-basis: 36px; width: 36px; } } }
+@media (max-width: 800px) { .hero { grid-template-columns: minmax(0, 1fr); } .heroCopy { padding: 28px; } .room { max-height: 320px; overflow: hidden; } .room img { min-height: 0; } .detailGrid { grid-template-columns: minmax(0, 1fr); } .contact { padding: 28px; } .benefits { margin-bottom: 40px; } }
+@media (max-width: 640px) { .main { padding: 20px 18px 64px; } .heroCopy { padding: 24px 20px; h1 { font-size: 36px; } } .room { max-height: 260px; } .eyebrow { font-size: 12px; } .grid { grid-template-columns: minmax(0, 1fr); gap: 20px; } .benefits { padding: 20px 8px; gap: 20px 0; li { padding: 0 12px; gap: 10px; font-size: 14px; } svg { flex-basis: 32px; width: 32px; height: 32px; } } .sectionTitle { font-size: 30px; } .cardHeader h3 { font-size: 21px; } .cardHeader > svg:last-child { flex-basis: 28px; width: 28px; } .cardBody { padding: 20px; } .notice { padding: 20px; gap: 14px; align-items: flex-start; > svg { flex-basis: 28px; width: 28px; } } .contact { gap: 18px; padding: 24px 20px; > svg { flex-basis: 44px; width: 44px; height: 44px; } > div { flex-basis: 200px; } } .phone { font-size: 18px; width: 100%; } .detailHeader { gap: 16px; > svg { flex-basis: 40px; width: 40px; height: 40px; } h1 { font-size: 30px; } p { font-size: 18px; } } .detailFacts { padding: 20px; } .photos > div { grid-template-columns: minmax(0, 1fr); } .photos img { height: 260px; } }
+@media (prefers-reduced-motion: reduce) { .card { transition: none; &:hover { transform: none; } } }
+@media (max-width: 1000px) { .grid { grid-template-columns: minmax(0, 1fr); } .hero { grid-template-columns: minmax(0, 1fr); } .room { max-height: 360px; overflow: hidden; } }
+@media (max-width: 640px) {
+  .room { max-height: none; img { height: auto; min-height: 0; object-fit: contain; } }
+  .heroCopy h1 { font-size: clamp(26px, 7vw, 36px); }
+  .cardHeader { display: grid; grid-template-columns: 36px minmax(0, 1fr) 28px; > div { grid-column: 1 / -1; grid-row: 2; } > svg:last-child { grid-column: 3; grid-row: 1; } }
+  .detailHeader { flex-direction: column; > div { min-width: 0; width: 100%; } h1 { font-size: 26px; } }
+}
+@media (max-width: 400px) {
+  .heroCopy h1, .detailHeader h1, .sectionTitle { font-size: 24px; }
+  .cardHeader h3 { font-size: 19px; }
+  .benefits { grid-template-columns: minmax(0, 1fr); li:not(:last-child) { border-right: 0; } }
+}

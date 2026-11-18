@@ -1,0 +1,7 @@
+@use '../../styles/variables' as brand;
+.form { max-width: 900px; }
+.fields { padding: 0; border: 0; min-width: 0; margin: 0; label { display: grid; gap: 8px; } textarea { width: 100%; min-height: 100px; padding: 12px; border: 1px solid #183d3255; border-radius: 12px; background: brand.$milk; color: brand.$graphite; resize: vertical; font-size: 16px; } button { min-height: 44px; padding: 8px 16px; border: 1px solid brand.$green; border-radius: 12px; background: transparent; color: brand.$green; cursor: pointer; &:disabled { opacity: .45; cursor: default; } } }
+.description { margin-bottom: 36px; }
+.list { list-style: none; display: grid; gap: 16px; padding: 0; li { border-radius: 20px; padding: 20px; background: brand.$sage; } label > span { font-size: 14px; color: brand.$green; } }
+.tools { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+.save { position: sticky; bottom: 16px; margin-top: 24px; background: brand.$milk; border: 1px solid #183d3226; padding: 16px; border-radius: 16px; box-shadow: 0 8px 24px #183d3212; display: flex; align-items: center; flex-wrap: wrap; gap: 16px; button { min-height: 44px; padding: 12px 20px; border: 0; border-radius: 12px; background: brand.$green; color: brand.$milk; cursor: pointer; &:disabled { opacity: .6; } } span { font-size: 15px; } }

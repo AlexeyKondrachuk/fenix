@@ -1,0 +1,18 @@
+@use '../../styles/variables' as brand;
+.main { max-width: 1160px; margin: auto; padding: 28px 24px 88px; }
+.intro { padding: 52px 0 44px; max-width: 760px; h1 { font-size: clamp(44px, 7vw, 76px); letter-spacing: -.045em; color: brand.$green; margin: 12px 0 20px; font-weight: 500; } > p:last-child { max-width: 620px; color: #625d50; } }
+.eyebrow { text-transform: uppercase; letter-spacing: .16em; font-size: 13px; color: brand.$green; }
+.sectionTitle { color: brand.$green; font-size: clamp(24px, 4vw, 32px); margin: 0 0 24px; }
+.cards { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; }
+.card { padding: clamp(24px, 4vw, 40px); border-radius: 24px; background: brand.$sage; min-width: 0; &:nth-child(2) { background: brand.$peach; } h3 { font-size: clamp(24px, 3vw, 32px); line-height: 1.25; color: brand.$green; max-width: 340px; margin: 16px 0 12px; } }
+.icon { display: grid; place-items: center; width: 56px; height: 56px; border: 1px solid #183d3233; border-radius: 50%; color: brand.$green; svg { width: 28px; height: 28px; } }
+.caption { font-size: 14px; color: brand.$green; margin: 24px 0 0; }
+.role { font-size: 16px; margin: 0 0 28px; }
+.phone { display: inline-flex; align-items: center; gap: 12px; min-height: 48px; font-size: clamp(20px, 3vw, 28px); text-decoration: none; color: brand.$green; overflow-wrap: anywhere; svg { width: 24px; height: 24px; flex-shrink: 0; } }
+.channels { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 20px; &:empty { display: none; } a { display: inline-flex; align-items: center; justify-content: space-between; gap: 20px; min-height: 44px; padding: 8px 16px; border: 1px solid #183d3233; border-radius: 12px; text-decoration: none; color: brand.$green; font-size: 15px; &:hover { background: brand.$green; color: brand.$milk; } } }
+.community { display: flex; justify-content: space-between; align-items: center; gap: 24px; padding: 36px 0; margin-top: 28px; border-bottom: 1px solid #183d3226; h2 { font-size: 24px; color: brand.$green; margin: 0 0 8px; } p { font-size: 16px; margin: 0; } .channels { margin: 0; } }
+.location { display: grid; grid-template-columns: .85fr 1.15fr; gap: 40px; margin-top: 64px; align-items: stretch; }
+.locationInfo { padding: 16px 0; h2 { font-size: clamp(32px, 4vw, 44px); color: brand.$green; margin: 16px 0 24px; } address { font-style: normal; font-size: 24px; } }
+.note { color: #625d50; font-size: 16px; line-height: 1.65; }
+.route { display: inline-flex; align-items: center; gap: 20px; min-height: 48px; padding: 12px 20px; border-radius: 12px; background: brand.$green; color: brand.$milk; text-decoration: none; font-size: 16px; margin-top: 16px; }
+@media (max-width: 767px) { .main { padding: 20px 18px calc(96px + env(safe-area-inset-bottom, 0px)); } .intro { padding: 32px 0; } .cards, .location { grid-template-columns: 1fr; } .cards { gap: 16px; } .location { margin-top: 40px; gap: 20px; } .community { flex-direction: column; align-items: flex-start; } }

@@ -1,0 +1,11 @@
+@use '../../app/styles/variables' as brand;
+
+.badge {
+  width: 36px;
+  height: 36px;
+  padding: 9px;
+  border-radius: 50%;
+  background: brand.$sage;
+  color: brand.$green;
+  flex: 0 0 36px;
+}

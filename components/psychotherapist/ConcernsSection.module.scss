@@ -1,0 +1,21 @@
+@use '../../app/styles/variables' as brand;
+@use '../../app/styles/typography' as typography;
+
+.section { margin-top: 88px; scroll-margin-top: 160px; }
+.heading { @include typography.section-heading; display: flex; justify-content: center; align-items: center; gap: 24px; margin: 0 0 12px; text-align: center;
+  &::before, &::after { content: ''; height: 1px; background: #b69438; flex: 0 1 120px; }
+}
+.subtitle { margin: 0 0 32px; text-align: center; color: brand.$green; font-size: 20px; }
+.grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; padding: 0; margin: 0; list-style: none; }
+.card { display: grid; grid-template-columns: 100px minmax(0, 1fr); align-items: center; gap: 24px; min-width: 0; padding: 24px; background: #fffaf6; border: 1px solid #fff9; border-radius: 28px; box-shadow: 0 8px 24px #26342e08; }
+.art { color: brand.$green; svg { display: block; width: 100%; height: auto; } }
+.copy { min-width: 0; border-left: 1px solid #b69438; padding-left: 24px; overflow-wrap: anywhere; hyphens: auto;
+  h3 { margin: 0 0 14px; font-size: 23px; line-height: 1.25; color: brand.$green; }
+  ul { list-style: none; padding: 0; margin: 0; display: grid; gap: 7px; }
+  li { position: relative; padding-left: 22px; font-size: 16px; line-height: 1.4;
+    &::before { content: '✦'; position: absolute; left: 0; color: #b69438; }
+  }
+}
+@media (max-width: 1150px) { .card { grid-template-columns: minmax(0, 1fr); gap: 16px; } .art { width: 68px; } .copy { border: 0; padding: 0; } }
+@media (max-width: 900px) { .section { margin-top: 56px; } }
+@media (max-width: 640px) { .grid { grid-template-columns: minmax(0, 1fr); gap: 16px; } .card { padding: 24px 20px; } .heading { gap: 12px; &::before, &::after { flex-basis: 24px; } } .subtitle { font-size: 17px; } .copy h3 { font-size: 22px; } }

@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 355 145">
+ <defs>
+  <linearGradient id="threads"><stop stop-color="#d7b252" stop-opacity="0"/><stop offset=".16" stop-color="#d5a842" stop-opacity=".72"/><stop offset=".48" stop-color="#809062" stop-opacity=".73"/><stop offset=".8" stop-color="#dca93e" stop-opacity=".75"/><stop offset="1" stop-color="#deb346" stop-opacity="0"/></linearGradient>
+  <radialGradient id="glow"><stop stop-color="#fff6ad"/><stop offset=".24" stop-color="#ffd65c"/><stop offset=".46" stop-color="#e7a330" stop-opacity=".8"/><stop offset="1" stop-color="#b8a059" stop-opacity="0"/></radialGradient>
+ </defs>
+ <g fill="none" stroke="url(#threads)" stroke-linecap="round">
+  <path d="M265 55C245 51 221 28 203 5M265 55C271 37 262 17 266 7M265 55C293 49 305 25 330 9M265 55C302 66 321 66 350 59M265 55C283 82 294 97 305 132M265 55C229 77 208 83 182 78S134 54 98 47S36 30 6 20M265 55C249 82 225 100 219 125" stroke-width="2.2"/>
+  <path d="M228 32q-17-3-29-15m22 9q-8-15-16-19m87 33q21-3 31-17m-6 43q16 12 31 11m-58 31q15 5 21 17m-19-24q-7 14-4 28m-58-41q-22 3-32 19m-47-43q-9-19-28-24m-17 10q-18 3-29-5m-37-10q-15 2-26-4" stroke-width=".9"/>
+ </g>
+ <g transform="translate(265 55) scale(1.08)"><path fill="#8a985b" opacity=".64" d="M-25-13Q-8-3-6-20Q0-5 14-19Q5-5 24-4Q8 1 18 17Q3 6-2 22Q-5 8-19 17Q-9 4-26 4Q-9 0-25-13Z"/><circle r="15" fill="url(#glow)"/></g>
+</svg>

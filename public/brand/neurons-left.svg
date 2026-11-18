@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 330 145">
+ <defs>
+  <linearGradient id="threads"><stop stop-color="#d7b252" stop-opacity="0"/><stop offset=".16" stop-color="#d5a842" stop-opacity=".72"/><stop offset=".48" stop-color="#809062" stop-opacity=".73"/><stop offset=".8" stop-color="#dca93e" stop-opacity=".75"/><stop offset="1" stop-color="#deb346" stop-opacity="0"/></linearGradient>
+  <radialGradient id="glow"><stop stop-color="#fff6ad"/><stop offset=".24" stop-color="#ffd65c"/><stop offset=".46" stop-color="#e7a330" stop-opacity=".8"/><stop offset="1" stop-color="#b8a059" stop-opacity="0"/></radialGradient>
+ </defs>
+ <g fill="none" stroke="url(#threads)" stroke-linecap="round">
+  <path d="M75 72C43 57 28 44 9 17M75 72C54 46 66 27 56 8M75 72C98 64 111 47 137 39S161 15 181 8M75 72C47 81 35 97 6 103M75 72C81 93 105 91 127 99M75 72C117 74 139 91 180 87S232 51 277 53" stroke-width="2.2"/>
+  <path d="M38 46q-18 0-29-15m23 8L27 18m103 23q15 7 31 5m-8-15 10-15m-117 70q-3 17-19 29m76-22q10 13 23 18m77-32q17 3 22 15" stroke-width=".9"/>
+ </g>
+ <g transform="translate(75 72) scale(1)"><path fill="#8a985b" opacity=".64" d="M-25-13Q-8-3-6-20Q0-5 14-19Q5-5 24-4Q8 1 18 17Q3 6-2 22Q-5 8-19 17Q-9 4-26 4Q-9 0-25-13Z"/><circle r="15" fill="url(#glow)"/></g>
+</svg>
