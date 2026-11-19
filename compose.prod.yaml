@@ -14,10 +14,7 @@ services:
       timeout: 3s
       retries: 20
   app:
-    build:
-      context: .
-      args:
-        NEXT_PUBLIC_YMAPS_API_KEY: ${NEXT_PUBLIC_YMAPS_API_KEY:-}
+    image: ${FENIX_IMAGE:?Set FENIX_IMAGE to the published GHCR image}
     restart: unless-stopped
     env_file: ${FENIX_ENV_FILE:-.env.production}
     environment:
@@ -26,6 +23,12 @@ services:
       NGINX_MEDIA_OFFLOAD: "1"
     volumes:
       - ./deploy-data/media:/media/fenix
+    healthcheck:
+      test: ["CMD", "node", "-e", "fetch('http://127.0.0.1:3100/').then(r => { if (!r.ok) process.exitCode = 1 }).catch(() => { process.exitCode = 1 })"]
+      interval: 10s
+      timeout: 5s
+      retries: 6
+      start_period: 30s
     depends_on:
       postgres:
         condition: service_healthy
@@ -40,6 +43,7 @@ services:
       - ./deploy-data/tls:/etc/nginx/tls:ro
       - ./deploy-data/media:/media/fenix:ro
     depends_on:
-      - app
+      app:
+        condition: service_healthy
 volumes:
   postgres-data:
