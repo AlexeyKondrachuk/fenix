@@ -1,0 +1,45 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: fenix
+      POSTGRES_USER: fenix
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?Set POSTGRES_PASSWORD}
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD", "pg_isready", "-U", "fenix", "-d", "fenix"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+  app:
+    build:
+      context: .
+      args:
+        NEXT_PUBLIC_YMAPS_API_KEY: ${NEXT_PUBLIC_YMAPS_API_KEY:-}
+    restart: unless-stopped
+    env_file: ${FENIX_ENV_FILE:-.env.production}
+    environment:
+      ARTICLE_UPLOAD_DIR: /media/fenix
+      DATABASE_BACKUP_MODE: pg_dump
+      NGINX_MEDIA_OFFLOAD: "1"
+    volumes:
+      - ./deploy-data/media:/media/fenix
+    depends_on:
+      postgres:
+        condition: service_healthy
+  nginx:
+    image: nginx:stable-alpine
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./deploy/nginx.conf:/etc/nginx/conf.d/default.conf:ro
+      - ./deploy-data/tls:/etc/nginx/tls:ro
+      - ./deploy-data/media:/media/fenix:ro
+    depends_on:
+      - app
+volumes:
+  postgres-data:

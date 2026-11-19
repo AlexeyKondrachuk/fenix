@@ -9,9 +9,9 @@ import { createArticleCategory } from "./actions";
 
 export const metadata = { title: "Статьи — Админка", robots: { index: false, follow: false } };
 
-export default async function AdminArticles({ searchParams }: { searchParams: Promise<{ id?: string; categoryError?: string; categorySaved?: string }> }) {
+export default async function AdminArticles({ searchParams }: { searchParams: Promise<{ id?: string; categoryError?: string; categorySaved?: string; deleted?: string }> }) {
   if (!await authorized()) redirect("/admin");
-  const { id, categoryError, categorySaved } = await searchParams;
+  const { id, categoryError, categorySaved, deleted } = await searchParams;
   const categories = await db().articleCategory.findMany({ orderBy: { name: "asc" } });
   const article = id && articleId.test(id) ? await db().article.findUnique({ where: { id } }) : null;
   const articles = id ? [] : await db().article.findMany({
@@ -19,9 +19,11 @@ export default async function AdminArticles({ searchParams }: { searchParams: Pr
   });
   return <main className={styles.content}>
     <h1>{id ? "Редактирование статьи" : "Статьи"}</h1>
+    {!id && deleted === "1" && <p role="status">Статья удалена.</p>}
     {id && <Link href="/admin/articles">← Статьи и категории</Link>}
     {article ? <ArticleEditor key={article.id} id={article.id} categories={categories} initial={{
       title: article.title, published: article.published, categoryId: article.categoryId,
+      seoTitle: article.seoTitle, seoDescription: article.seoDescription,
       blocks: Array.isArray(article.blocks) ? article.blocks.filter(validBlock) : [],
     }} /> : id ? <p>Статья не найдена.</p> : <>
       <section className={styles.form} aria-labelledby="article-categories">

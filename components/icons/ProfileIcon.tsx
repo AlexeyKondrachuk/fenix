@@ -15,6 +15,8 @@ const paths = {
   levels: <path d="M3 20v-5h4v5Zm7 0V9h4v11Zm7 0V3h4v17Z" />,
   person: <><circle cx="12" cy="7" r="4" /><path d="M4 21v-2a8 8 0 0 1 16 0v2" /></>,
   people: <><circle cx="8" cy="7" r="3" /><circle cx="17" cy="8" r="3" /><path d="M2 21v-3a6 6 0 0 1 12 0v3m2-8a6 6 0 0 1 6 6v2" /></>,
+  conversation: <><path d="M4 4h11a2 2 0 0 1 2 2v6a2 2 0 0 1-2 2H8l-4 3v-3a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2Z" /><path d="M19 8h1a2 2 0 0 1 2 2v6a2 2 0 0 1-2 2v3l-4-3h-5M6 9h7" /></>,
+  checklist: <><rect x="4" y="4" width="16" height="18" rx="2" /><rect x="9" y="2" width="6" height="4" rx="1" /><path d="m7 11 1.5 1.5L11 10m2 2h4m-10 4 1.5 1.5L11 15m2 2h4" /></>,
   adjustments: <><path d="M3 6h5m4 0h9M3 12h10m4 0h4M3 18h4m4 0h10" /><circle cx="10" cy="6" r="2" /><circle cx="15" cy="12" r="2" /><circle cx="9" cy="18" r="2" /></>,
 };
 

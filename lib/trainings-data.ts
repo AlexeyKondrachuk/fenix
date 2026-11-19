@@ -1,10 +1,13 @@
 export const trainingIcons = { target: "Интенсив", child: "Внутренний ребёнок", bird: "Поддержка", breath: "Дыхание", shield: "Границы", lotus: "Личностная работа" } as const;
 export type TrainingIconName = keyof typeof trainingIcons;
 export type TrainingDate = { start: string; end: string; note: string };
+export const trainingSeoTitleLimit = 120;
+export const trainingSeoDescriptionLimit = 320;
 export type TrainingData = {
   slug: string; title: string; summary: string; description: string; duration: string; time: string;
   price: string; requirements: string; badge: string; icon: TrainingIconName; dates: TrainingDate[];
   photos: string[]; published: boolean; position: number;
+  seoTitle?: string; seoDescription?: string;
 };
 export type Training = TrainingData & { id: string };
 export const trainingSlug = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
@@ -18,6 +21,8 @@ export function validTraining(value: unknown): value is TrainingData {
   const v = value as TrainingData;
   const text = (s: unknown, max: number, required = true) => typeof s === "string" && s.length <= max && (!required || s.trim().length > 0);
   return text(v.slug, 120) && trainingSlug.test(v.slug) && text(v.title, 250) && text(v.summary, 1500)
+    && (v.seoTitle === undefined || text(v.seoTitle, trainingSeoTitleLimit, false))
+    && (v.seoDescription === undefined || text(v.seoDescription, trainingSeoDescriptionLimit, false))
     && text(v.description, 40000) && text(v.duration, 200) && text(v.time, 300) && text(v.price, 100)
     && text(v.requirements, 1000, false) && text(v.badge, 100, false) && Object.hasOwn(trainingIcons, v.icon)
     && typeof v.published === "boolean" && Number.isInteger(v.position) && v.position >= 0 && v.position <= 10000
@@ -34,3 +39,4 @@ export const defaultTrainings: TrainingData[] = [
   { ...emptyTraining, slug: "moi-granitsy", title: "Группа «Мои границы»", summary: "Развитие здоровых личных границ, уверенности и уважения к своим потребностям.", description: "Групповая работа с личными границами и отношением к собственным потребностям.\n\nДля участия необходим опыт в психотерапии. В пятницу занятия проходят вечером, в субботу и воскресенье — в течение дня.", duration: "3 дня", time: "пт 16:00–21:00; сб–вс 9:00–18:00", price: "12 000 руб.", requirements: "Опыт в психотерапии", icon: "shield", dates: [session("2027-02-26", "2027-02-28")], published: true, position: 4 },
   { ...emptyTraining, slug: "zhenskaya-gruppa", title: "Психотерапевтическая женская группа", summary: "Темы: последствия измен, насилия, работа с сексуальностью и образом себя.", description: "Женская психотерапевтическая группа для работы с личной историей, отношениями и образом себя.\n\nВ пятницу занятия проходят вечером, в субботу и воскресенье — в течение дня. Детали программы и условия участия можно уточнить у специалиста.", duration: "3 дня", time: "пт 16:00–21:00; сб–вс 9:00–18:00", price: "12 000 руб.", icon: "lotus", dates: [session("2026-10-23", "2026-10-25", "Группа 1"), session("2027-03-26", "2027-03-28", "Группа 2, новый набор")], published: true, position: 5 },
 ];
+

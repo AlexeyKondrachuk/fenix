@@ -49,7 +49,7 @@ export default async function PsychotherapistIntro() {
       <p>Меня зовут {specialists.adult.fullName}. Я врач-психотерапевт, психиатр-нарколог и клинический психолог, кандидат медицинских наук. Уже {getExperience()} я помогаю людям справляться с трудностями и улучшать качество жизни.</p>
       <p>В своей работе я придерживаюсь интегративного подхода: это значит, что я не ограничиваюсь одним методом, а подбираю техники и <a href="#methods">методы психотерапии</a> индивидуально под ваш личный запрос. Я глубоко убеждён: не существует одной «таблетки для всех». Каждый человек уникален, и моя задача — не лечить по шаблону, а помочь вам раскрыть ваш собственный путь к целостности и благополучию.</p>
       <p>На этом сайте вы найдёте информацию о направлениях моей работы, а также сможете записаться на <Link href="/sections/individual-therapy">индивидуальную</Link> или <Link href="/sections/group-therapy">групповую</Link> психотерапию.</p>
-      <div className={styles.actions}><ActionLink href="#qualifications"><ProfileIcon name="certificate" />Мои дипломы и сертификаты</ActionLink><ActionLink href="/sections/contacts"><PhoneIcon outlined />Записаться на консультацию</ActionLink></div>
+      <div className={styles.actions}><ActionLink href="#qualifications"><ProfileIcon name="certificate" />Мои дипломы и сертификаты</ActionLink><ActionLink href="/contacts"><PhoneIcon outlined />Записаться на консультацию</ActionLink></div>
       <ul className={styles.values}>{values.map(item => <li key={item.icon}><ProfileIcon name={item.icon} /><span>{item.text}</span></li>)}</ul>
       <FirstMeeting />
     </div>

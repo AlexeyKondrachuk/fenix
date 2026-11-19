@@ -3,6 +3,7 @@ import type { NextConfig } from "next";
 const nextConfig: NextConfig = {
   async redirects() {
     return [
+      { source: "/sections/contacts", destination: "/contacts", permanent: true },
       { source: "/sections/psychotherapist", destination: "/psyhoterapevt", permanent: true },
       { source: "/sections/child-psychology", destination: "/detskiy-psiholog", permanent: true },
       { source: "/sections/training", destination: "/treningi", permanent: true },

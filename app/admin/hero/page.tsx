@@ -12,8 +12,9 @@ async function savePhoto(data: FormData) {
   if (!await authorized()) redirect("/admin");
   const role = String(data.get("role") ?? "");
   const file = data.get("photo");
-  const limit = 5 * 1024 * 1024;
-  if (!isHeroRole(role) || !(file instanceof File) || !file.size || file.size > limit) {
+  const limit = 300 * 1024;
+  if (file instanceof File && file.size > limit) redirect("/admin/hero?status=too-large");
+  if (!isHeroRole(role) || !(file instanceof File) || !file.size) {
     redirect("/admin/hero?status=invalid");
   }
   let photo: Buffer;
@@ -44,7 +45,8 @@ export default async function HeroAdmin({ searchParams }: { searchParams: Promis
   const { status } = await searchParams;
   return <main className={styles.content}>
     <h1>Фото на главной</h1>
-    <p>Загрузите JPEG, PNG или WebP размером до 5 МБ.</p>
+    <p>Загрузите JPEG, PNG или WebP размером до 300 КБ.</p>
+    {status === "too-large" && <p role="alert">Фото должно быть не больше 300 КБ.</p>}
     {status === "saved" && <p role="status">Фото сохранено.</p>}
     {status === "invalid" && <p role="alert">Проверьте формат и размер изображения.</p>}
     {status === "failed" && <p role="alert">Не удалось сохранить фото. Попробуйте ещё раз.</p>}

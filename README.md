@@ -1,5 +1,7 @@
 # Феникс
 
+Инструкция по [деплою на VPS и переносу базы и медиа](deploy/README.md).
+
 Сайт центра психологии. Next.js App Router, SCSS Modules, Prisma и PostgreSQL.
 
 ## Локальный запуск
@@ -7,7 +9,7 @@
 1. Скопируйте `.env.example` в `.env`. Задайте пароль PostgreSQL в обоих полях, используя URL-кодирование в `DATABASE_URL`, если нужно. Задайте отдельные случайные значения для `ADMIN_PASSWORD` и `ADMIN_SESSION_SECRET`.
 2. Выполните `npm ci`.
 3. Запустите `docker compose up -d --wait`.
-4. Примените миграции командой `npx prisma migrate deploy`.
+4. Выполните `node scripts/export-review-media.cjs`, затем `npx prisma migrate deploy`. При обновлении старой установки остановите приложение перед экспортом. Скрипт переносит прежние вложения отзывов в файловое хранилище и проверяет копии.
 5. Выполните `npm run dev`. Сайт откроется на http://localhost:3100, админка — на http://localhost:3100/admin.
 
 Пароль для локальной админки хранится в `.env` в поле `ADMIN_PASSWORD`.

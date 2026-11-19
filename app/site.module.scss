@@ -1,4 +1,5 @@
 @use "styles/variables" as brand;
+@use "styles/typography" as type;
 @use "sass:color";
 
 .hero {
@@ -82,9 +83,6 @@
 @media (max-width: 48rem) {
   .publicMain { padding-bottom: calc(64px + env(safe-area-inset-bottom, 0px)); }
 }
-
-.storyBand { background: brand.$sage; }
-.storyBand p { max-width: 65ch; }
 
 @media (min-width: 48.001rem) {
   .publicMain [id] { scroll-margin-top: 9rem; }
@@ -184,7 +182,7 @@
     padding: clamp(1rem, 2.2vw, 1.75rem);
     padding-bottom: .5rem;
   }
-  .helpCards h3, .steps h3 { color: brand.$green; }
+  .helpCards h3 { color: brand.$green; }
   .helpIllustration {
     display: block;
     width: 100%;
@@ -200,44 +198,68 @@
   .helpIllustration :global(.line) { fill: none; stroke: brand.$green; stroke-width: 2; stroke-linecap: round; }
   .helpCards > li:nth-child(2) .helpIllustration :global(.wash) { fill: rgba(brand.$milk, .6); }
 
+  .storyBand {
+    --wave-height: clamp(2rem, 5vw, 3.5rem);
+    position: relative;
+    isolation: isolate;
+    width: calc(100% - 2rem);
+    max-width: 70rem;
+    margin-inline: auto;
+    padding-bottom: calc(var(--wave-height) - 1.25rem);
+
+    &::before {
+      content: "";
+      position: absolute;
+      z-index: -1;
+      inset: 0 0 calc(var(--wave-height) - 1px);
+      border-radius: brand.$radius-large brand.$radius-large 0 0;
+      background: brand.$sage;
+    }
+  }
+  .storyWave {
+    position: absolute;
+    z-index: -1;
+    inset: auto 0 0;
+    width: 100%;
+    height: var(--wave-height);
+    fill: brand.$sage;
+    pointer-events: none;
+  }
+  .storyBand h2 {
+    @include type.section-heading;
+    margin-bottom: clamp(1.25rem, 2.5vw, 2rem);
+  }
   .steps {
-    --step-gap: clamp(1.25rem, 3vw, 2.5rem);
+    --step-gap: clamp(1.5rem, 4.5vw, 3.75rem);
+    --step-icon-size: clamp(3.25rem, 5.6vw, 4.75rem);
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: var(--step-gap);
     margin: 0;
     padding: 0;
     list-style: none;
-    counter-reset: meeting-step;
   }
   .steps li {
-    position: relative;
     display: grid;
-    align-content: start;
-    gap: 1rem;
-    counter-increment: meeting-step;
-  }
-  .steps li:not(:last-child)::after {
-    content: "";
-    position: absolute;
-    inset: .875rem calc(-1 * var(--step-gap) + .5rem) auto 4.75rem;
-    height: 1.5rem;
-    border-bottom: 1px solid rgba(brand.$green, .5);
-    border-radius: 0 0 50% 50%;
-    pointer-events: none;
+    grid-template-columns: var(--step-icon-size) minmax(0, 1fr);
+    align-items: start;
+    gap: clamp(.625rem, 1.2vw, 1rem);
   }
   .stepIcon {
     display: grid;
     place-items: center;
-    width: 4.25rem;
+    width: var(--step-icon-size);
     aspect-ratio: 1;
     border-radius: 46% 54% 55% 45%;
     background: brand.$milk;
     color: brand.$green;
   }
-  .stepIcon svg { width: 2.25rem; height: 2.25rem; }
-  .steps h3::before { content: counter(meeting-step) ". "; }
-  .steps p { margin-top: .625rem; }
+  .stepIcon svg { width: 55%; height: 55%; }
+  .steps h3 {
+    @include type.card-heading;
+    font-size: clamp(1.125rem, 1.9vw, 1.5rem);
+  }
+  .steps p { margin-top: .5rem; font-size: clamp(.9375rem, 1.35vw, 1.0625rem); }
 
   .booking {
     display: flex;
@@ -255,18 +277,12 @@
   @media (max-width: 48rem) {
     .hero { grid-template-columns: minmax(0, 1fr); }
     .heroPhotos { width: min(100%, 34rem); }
-    .cards, .steps, .specialistCards { grid-template-columns: minmax(0, 1fr); }
-    .steps li { grid-template-columns: 3.25rem minmax(0, 1fr); align-items: start; }
-    .steps li:not(:last-child)::after {
-      inset: 3.5rem auto calc(-1 * var(--step-gap) + .25rem) 1.625rem;
-      height: auto;
-      border: 0;
-      border-left: 1px solid rgba(brand.$green, .5);
-      border-radius: 0;
-    }
-    .stepIcon { width: 3.25rem; }
-    .stepIcon svg { width: 1.875rem; height: 1.875rem; }
+    .cards, .specialistCards { grid-template-columns: minmax(0, 1fr); }
     .formats li:nth-child(3) { background: brand.$sage; }
     .formats li:nth-child(4) { background: brand.$peach; }
+  }
+
+  @media (max-width: 53rem) {
+    .steps { grid-template-columns: minmax(0, 1fr); }
   }
 }

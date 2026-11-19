@@ -7,6 +7,11 @@ import { mediaTypes } from "./articles";
 export const uploadRoot = resolve(process.env.ARTICLE_UPLOAD_DIR || "article-uploads");
 
 export async function serveMedia(request: Request, id: string, file: string) {
+  if (process.env.NGINX_MEDIA_OFFLOAD === "1") {
+    return new Response(null, {
+      headers: { "X-Accel-Redirect": `/_internal_media/${encodeURIComponent(id)}/${encodeURIComponent(file)}` },
+    });
+  }
   const path = resolve(uploadRoot, id, file);
   const info = await stat(path).catch(() => null);
   if (!info?.isFile()) return new Response(null, { status: 404 });

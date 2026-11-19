@@ -6,7 +6,7 @@ export const articlesApi = api.injectEndpoints({
     createArticle: build.mutation<{ id: string }, void>({
       query: () => ({ url: "articles", method: "POST", body: { create: true } }),
     }),
-    saveArticle: build.mutation<{ id: string }, { id: string; title: string; blocks: Block[]; published: boolean; categoryId: string | null }>({
+    saveArticle: build.mutation<{ id: string }, { id: string; title: string; blocks: Block[]; published: boolean; categoryId: string | null; seoTitle: string; seoDescription: string }>({
       query: body => ({ url: "articles", method: "POST", body }),
     }),
     uploadArticleMedia: build.mutation<{ file: string }, { id: string; file: File }>({

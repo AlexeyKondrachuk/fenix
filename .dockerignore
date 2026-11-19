@@ -1,0 +1,10 @@
+.git
+.env*
+.next
+node_modules
+generated
+article-uploads
+deploy-data
+*.dump
+*.tsbuildinfo
+next-env.d.ts

@@ -3,8 +3,9 @@
 import { useCreateArticleMutation, useSaveArticleMutation, useUploadArticleMediaMutation } from "../../../Redux/articlesApi";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { fonts, mediaUrl, photoLimit, photoTypes, videoLimit, videoTypes, type Block } from "../../../lib/articles";
+import { fonts, mediaUrl, mediaTextLimit, photoLimit, photoTypes, seoTitleLimit, seoDescriptionLimit, videoLimit, videoTypes, type ArticleMediaDetails, type Block } from "../../../lib/articles";
 import ArticlePhotos from "../../../components/ArticlePhotos";
+import { deleteArticle, unpublishArticle } from "./actions";
 import styles from "../../site.module.scss";
 
 function errorMessage(error: unknown) {
@@ -37,10 +38,12 @@ export function CreateArticle() {
   </>;
 }
 
-export default function ArticleEditor({ id, initial, categories }: { id: string; initial: { title: string; blocks: Block[]; published: boolean; categoryId: string | null }; categories: { id: string; name: string }[] }) {
+export default function ArticleEditor({ id, initial, categories }: { id: string; initial: { title: string; blocks: Block[]; published: boolean; categoryId: string | null; seoTitle: string; seoDescription: string }; categories: { id: string; name: string }[] }) {
   const [saveArticle] = useSaveArticleMutation();
   const [uploadMedia] = useUploadArticleMediaMutation();
   const [title, setTitle] = useState(initial.title);
+  const [seoTitle, setSeoTitle] = useState(initial.seoTitle);
+  const [seoDescription, setSeoDescription] = useState(initial.seoDescription);
   const [categoryId, setCategoryId] = useState(initial.categoryId ?? "");
   const [blocks, setBlocks] = useState(initial.blocks);
   const [published, setPublished] = useState(initial.published);
@@ -69,7 +72,7 @@ export default function ArticleEditor({ id, initial, categories }: { id: string;
   }
   function save(nextPublished: boolean) {
     void run(async () => {
-      await saveArticle({ id, title, blocks, published: nextPublished, categoryId: categoryId || null }).unwrap();
+      await saveArticle({ id, title, blocks, published: nextPublished, categoryId: categoryId || null, seoTitle, seoDescription }).unwrap();
       setPublished(nextPublished);
       setMessage(nextPublished ? "Статья опубликована." : "Черновик сохранён.");
     });
@@ -91,6 +94,12 @@ export default function ArticleEditor({ id, initial, categories }: { id: string;
     <p>Статус: {published ? "Опубликована" : "Черновик"}</p>
     <fieldset disabled={busy}>
       <label>Название статьи<input value={title} onChange={event => setTitle(event.target.value)} /></label>
+      <fieldset>
+        <legend>SEO и превью ссылки</legend>
+        <p>Если поля пустые, используются название статьи и фрагмент её текста.</p>
+        <label>SEO-заголовок<input value={seoTitle} maxLength={seoTitleLimit} onChange={event => setSeoTitle(event.target.value)} /></label>
+        <label>SEO-описание<textarea value={seoDescription} maxLength={seoDescriptionLimit} rows={3} onChange={event => setSeoDescription(event.target.value)} /></label>
+      </fieldset>
       <label>Категория<select value={categoryId} onChange={event => setCategoryId(event.target.value)}>
         <option value="">Без категории</option>
         {categories.map(category => <option key={category.id} value={category.id}>{category.name}</option>)}
@@ -120,17 +129,45 @@ export default function ArticleEditor({ id, initial, categories }: { id: string;
               if (selected.length) upload(block, selected);
             }} />
           </label>
-          {block.type === "photo" ? <ArticlePhotos id={id} files={block.files} admin /> :
+          {block.type === "photo" ? <ArticlePhotos id={id} files={block.files} details={block.details} admin /> :
             block.files[0] && <video src={mediaUrl(id, block.files[0], true)} controls preload="metadata" style={{ maxWidth: "100%" }} />}
-          {block.files.map((file, index) => <button key={file} type="button" onClick={() => update({ ...block, files: block.files.filter(item => item !== file) })}>
-            {block.type === "photo" ? `Удалить фото ${index + 1}` : "Удалить видео"}
-          </button>)}
+          {block.files.map((file, index) => {
+            const details = block.details?.[file];
+            const setDetails = (patch: ArticleMediaDetails[string]) => {
+              update({ ...block, details: { ...block.details, [file]: { ...details, ...patch } } });
+            };
+            return <div key={file}>
+              {block.type === "photo" ? (
+                <label>Альтернативный текст для фото {index + 1}<input value={details?.alt ?? ""} maxLength={mediaTextLimit} onChange={event => setDetails({ alt: event.target.value })} /></label>
+              ) : <>
+                <label>Название видео<input value={details?.title ?? ""} maxLength={mediaTextLimit} onChange={event => setDetails({ title: event.target.value })} /></label>
+                <label>Описание видео<textarea value={details?.description ?? ""} maxLength={mediaTextLimit} onChange={event => setDetails({ description: event.target.value })} /></label>
+              </>}
+              <button type="button" onClick={() => {
+                const remaining = { ...block.details };
+                delete remaining[file];
+                update({ ...block, details: remaining, files: block.files.filter(item => item !== file) });
+              }}>{block.type === "photo" ? `Удалить фото ${index + 1}` : "Удалить видео"}</button>
+            </div>;
+          })}
         </>}
       </fieldset>)}
       <p>{(["text", "photo", "video"] as const).map((type, index) =>
         <button key={type} type="button" onClick={() => add(type)} style={{ marginInlineEnd: ".5rem" }}>Добавить {["текст", "фото", "видео"][index]}</button>)}</p>
       <button type="button" onClick={() => save(false)}>Сохранить черновик</button>{" "}
       <button type="button" onClick={() => save(true)}>Опубликовать статью</button>
+      {published && <button type="button" onClick={() => void run(async () => {
+        if (!await unpublishArticle(id)) throw new Error("Статья не найдена.");
+        setPublished(false);
+        setMessage("Статья снята с публикации.");
+      })}>Снять с публикации</button>}
+      <details>
+        <summary>Удалить статью</summary>
+        <form action={deleteArticle.bind(null, id)}>
+          <p>Статья будет удалена окончательно.</p>
+          <button type="submit">Подтвердить удаление</button>
+        </form>
+      </details>
     </fieldset>
     {busy && <p role="status">Подождите…</p>}
     {error && <p role="alert">{error}</p>}

@@ -3,7 +3,7 @@ import { randomUUID } from "node:crypto";
 import { access, mkdir, writeFile } from "node:fs/promises";
 import { join } from "node:path";
 import { authorized } from "../../../lib/admin-auth";
-import { articleId, photoLimit, photoTypes, validBlock, videoLimit, videoTypes } from "../../../lib/articles";
+import { articleId, photoLimit, photoTypes, seoTitleLimit, seoDescriptionLimit, validBlock, videoLimit, videoTypes } from "../../../lib/articles";
 import { uploadRoot } from "../../../lib/article-storage";
 import { db } from "../../../lib/db";
 
@@ -21,10 +21,16 @@ export async function POST(request: Request) {
       const { id } = await db().article.create({ data: {} });
       return Response.json({ id });
     }
-    const { id, title, blocks, published, categoryId } = body;
+    const { id, title, blocks, published, categoryId, seoTitle, seoDescription } = body;
     if (typeof id !== "string" || !articleId.test(id) || typeof title !== "string" ||
       !Array.isArray(blocks) || !blocks.every(validBlock) || typeof published !== "boolean") {
       return error("Проверьте данные статьи.");
+    }
+    if (seoTitle !== undefined && (typeof seoTitle !== "string" || seoTitle.trim().length > seoTitleLimit)) {
+      return error(`SEO-заголовок должен быть не длиннее ${seoTitleLimit} символов.`);
+    }
+    if (seoDescription !== undefined && (typeof seoDescription !== "string" || seoDescription.trim().length > seoDescriptionLimit)) {
+      return error(`SEO-описание должно быть не длиннее ${seoDescriptionLimit} символов.`);
     }
     if (categoryId !== undefined && categoryId !== null && (typeof categoryId !== "string" ||
       !articleId.test(categoryId) || !await db().articleCategory.findUnique({ where: { id: categoryId }, select: { id: true } }))) {
@@ -47,7 +53,11 @@ export async function POST(request: Request) {
       const conflict = await db().article.findUnique({ where: { slug: base }, select: { id: true } });
       slug = conflict ? `${base}-${id}` : base;
     }
-    const result = await db().article.updateMany({ where: { id }, data: { title: title.trim(), blocks, published, ...(categoryId !== undefined ? { categoryId } : {}), ...(slug ? { slug } : {}) } });
+    const result = await db().article.updateMany({
+      where: { id },
+      data: { title: title.trim(), blocks, published, seoTitle: seoTitle?.trim(), seoDescription: seoDescription?.trim(),
+        ...(categoryId !== undefined ? { categoryId } : {}), ...(slug ? { slug } : {}) },
+    });
     return result.count ? Response.json({ id }) : error("Статья не найдена.", 404);
   }
 

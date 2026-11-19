@@ -29,7 +29,7 @@ export default async function Footer() {
       </ul></nav>
       <nav aria-labelledby="footer-information"><h2 id="footer-information">Полезная информация</h2><ul>
         <li><Link href="/">О центре</Link></li>
-        <li><Link href="/sections/contacts">Контакты</Link></li>
+        <li><Link href="/contacts">Контакты</Link></li>
         <li><Link href="/privacy-policy">Политика конфиденциальности</Link></li>
         <li><Link href="/personal-data-policy">Политика обработки персональных данных</Link></li>
       </ul></nav>

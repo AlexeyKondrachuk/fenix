@@ -3,5 +3,5 @@ import { siteUrl } from "../lib/article-seo";
 
 export default function robots(): MetadataRoute.Robots {
   const origin = siteUrl();
-  return { rules: { userAgent: "*", allow: "/articles", disallow: ["/admin", "/api/"] }, ...(origin ? { sitemap: `${origin}/sitemap.xml` } : {}) };
+  return { rules: { userAgent: "*", allow: ["/articles", "/api/articles/media/"], disallow: ["/admin", "/api/"] }, ...(origin ? { sitemap: `${origin}/sitemap.xml` } : {}) };
 }

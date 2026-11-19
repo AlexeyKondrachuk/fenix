@@ -30,6 +30,8 @@ model SiteContacts {
 
 model Article {
   id        String   @id @default(uuid())
+  seoTitle String @default("")
+  seoDescription String @default("")
   slug      String?  @unique
   title     String   @default("")
   blocks    Json     @default("[]")
@@ -75,4 +77,32 @@ model Training {
   published Boolean @default(false)
   position  Int     @default(0)
   content   Json
+}
+
+enum ReviewStatus {
+  PENDING
+  APPROVED
+  REJECTED
+}
+
+model Review {
+  id        String       @id @default(uuid())
+  specialist String?
+  name      String?
+  rating    Int
+  text      String
+  status    ReviewStatus @default(PENDING)
+  createdAt DateTime     @default(now())
+  media     ReviewMedia[]
+
+  @@index([status, createdAt])
+}
+
+model ReviewMedia {
+  id       String @id @default(uuid())
+  reviewId String
+  review   Review @relation(fields: [reviewId], references: [id], onDelete: Cascade)
+  mimeType String
+
+  @@index([reviewId])
 }

@@ -69,7 +69,7 @@ async function saveContacts(data: FormData) {
     update: contacts,
   });
   revalidatePath("/");
-  revalidatePath("/sections/contacts");
+  revalidatePath("/contacts");
   redirect("/admin?section=contacts&saved=1");
 }
 

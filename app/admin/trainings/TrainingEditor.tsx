@@ -1,7 +1,7 @@
 "use client";
 import Link from "next/link";
 import { useActionState, useState } from "react";
-import { trainingIcons, type TrainingData, type TrainingDate } from "../../../lib/trainings-data";
+import { trainingIcons, trainingSeoTitleLimit, trainingSeoDescriptionLimit, type TrainingData, type TrainingDate } from "../../../lib/trainings-data";
 import TrainingIcon from "../../../components/icons/TrainingIcon";
 import { saveTraining } from "./actions";
 import shared from "../concerns/concerns.module.scss";
@@ -40,6 +40,12 @@ export default function TrainingEditor({ id, initial, saved = false }: { id: str
       <label>Название тренинга<input required maxLength={250} value={data.title} onChange={e => update({ title: e.target.value, ...(!initial.slug && (!data.slug || data.slug === transliterate(data.title)) ? { slug: transliterate(e.target.value) } : {}) })} /></label>
       <label>Адрес страницы<input required pattern="[a-z0-9]+(-[a-z0-9]+)*" maxLength={120} placeholder="nazvanie-treninga" value={data.slug} onChange={e => update({ slug: e.target.value })} /><small>/treningi/{data.slug || "nazvanie-treninga"} — латинские буквы, цифры и дефис.</small></label>
       <label>Краткое описание для карточки<textarea required maxLength={1500} rows={3} value={data.summary} onChange={e => update({ summary: e.target.value })} /></label>
+      <fieldset>
+        <legend>SEO и превью ссылки</legend>
+        <p>Если поля пустые, используются название и краткое описание тренинга.</p>
+        <label>SEO-заголовок<input maxLength={trainingSeoTitleLimit} value={data.seoTitle ?? ""} onChange={e => update({ seoTitle: e.target.value })} /></label>
+        <label>SEO-описание<textarea maxLength={trainingSeoDescriptionLimit} rows={3} value={data.seoDescription ?? ""} onChange={e => update({ seoDescription: e.target.value })} /></label>
+      </fieldset>
       <label>Подробное описание<textarea required maxLength={40000} rows={12} value={data.description} onChange={e => update({ description: e.target.value })} /><small>Отделяйте абзацы пустой строкой.</small></label>
       <div className={styles.twoColumns}>
         <label>Продолжительность<input required maxLength={200} placeholder="3 дня" value={data.duration} onChange={e => update({ duration: e.target.value })} /></label>
